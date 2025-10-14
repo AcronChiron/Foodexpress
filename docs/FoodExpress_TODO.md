@@ -38,7 +38,7 @@
 
 - [x] `app.js` : créer l’app Express (JSON, CORS, Helmet, logger, handler 404/erreurs)
 - [x] `server.js` : démarrer sur `process.env.PORT`
-- [ ] `config/db.js` : connecter Mongoose + gestion des événements & retries
+- [x] `config/db.js` : connecter Mongoose + gestion des événements & retries
 - [x] Sanity route `GET /health` → `{status:"ok"}`
 - [ ] Linter & Prettier configurés (pre-commit hook avec Husky facultatif)
 
