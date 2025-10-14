@@ -47,7 +47,7 @@
     "jest": "^30.2.0",
     "lint-staged": "^16.2.4",
     "mongodb-memory-server": "^10.2.3",
-    "swagger-jsdoc": "^7.1.0",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.0",
     "nodemon": "^3.1.10",
     "nyc": "^15.1.0",
