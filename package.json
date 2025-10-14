@@ -2,7 +2,7 @@
   "name": "foodexpress",
   "version": "1.0.0",
   "description": "3API Projet - FoodExpress, API REST stateless avec authentification JWT, API Expressjs, base de données MongoDB/Mongoose et documentation Swagger/OpenAPI.",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "doc": "docs"
   },
@@ -29,6 +29,7 @@
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-rate-limit": "^6.11.2",
     "express-session": "^1.18.2",
     "helmet": "^8.1.0",
     "joi": "^18.0.1",
@@ -42,12 +43,14 @@
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.1.2",
     "eslint-plugin-prettier": "^5.2.2",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "jest": "^30.2.0",
     "lint-staged": "^16.2.4",
+    "mongodb-memory-server": "^10.2.3",
     "nodemon": "^3.1.10",
     "nyc": "^15.1.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4"
   },
   "lint-staged": {
     "src/**/*.{js,json,md}": [
