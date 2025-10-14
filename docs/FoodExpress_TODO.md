@@ -36,10 +36,10 @@
 
 ## 1) Base serveur & DB (jour 1)
 
-- [ ] `app.js` : créer l’app Express (JSON, CORS, Helmet, logger, handler 404/erreurs)
+- [x] `app.js` : créer l’app Express (JSON, CORS, Helmet, logger, handler 404/erreurs)
 - [ ] `server.js` : démarrer sur `process.env.PORT`
 - [ ] `config/db.js` : connecter Mongoose + gestion des événements & retries
-- [ ] Sanity route `GET /health` → `{status:"ok"}`
+- [x] Sanity route `GET /health` → `{status:"ok"}`
 - [ ] Linter & Prettier configurés (pre-commit hook avec Husky facultatif)
 
 ---
