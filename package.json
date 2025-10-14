@@ -1,0 +1,45 @@
+{
+  "name": "foodexpress",
+  "version": "1.0.0",
+  "description": "3API Projet - FoodExpress, API REST stateless avec authentification JWT, API Expressjs, base de données MongoDB/Mongoose et documentation Swagger/OpenAPI.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --exec node src/server.js",
+    "start": "cross-env NODE_ENV=production node src/server.js",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .js,.mjs,.cjs",
+    "coverage": "nyc --reporter=text --reporter=lcov npm test"
+  },
+  "keywords": [
+    "JWT",
+    "REST",
+    "Express.js",
+    "MongoDB/Mongoose",
+    "Swagger/OpenAPI"
+  ],
+  "author": "Nicolas Valerino & Nicolas Baylac",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "joi": "^18.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
+    "supertest-session": "^5.0.1"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.1.1",
+    "eslint": "^8.50.0",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.10",
+    "nyc": "^15.1.0"
+  }
+}
