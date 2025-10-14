@@ -1,7 +1,7 @@
-require("dotenv").config();
-const http = require("http");
-const app = require("./app");
-const { connect: connectDb } = require("./config/db");
+require('dotenv').config();
+const http = require('http');
+const app = require('./app');
+const { connect: connectDb } = require('./config/mongodb');
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,9 +10,7 @@ async function start() {
     await connectDb();
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.error(
-      "Warning: database connection failed. Starting server without DB."
-    );
+    console.error('Warning: database connection failed. Starting server without DB.');
   }
 
   const server = http.createServer(app);

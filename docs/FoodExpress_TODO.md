@@ -40,15 +40,15 @@
 - [x] `server.js` : démarrer sur `process.env.PORT`
 - [x] `config/db.js` : connecter Mongoose + gestion des événements & retries
 - [x] Sanity route `GET /health` → `{status:"ok"}`
-- [ ] Linter & Prettier configurés (pre-commit hook avec Husky facultatif)
+- [x] Linter & Prettier configurés (pre-commit hook avec Husky facultatif)
 
 ---
 
 ## 2) Modèles Mongoose (jour 1)
 
-- [ ] `User` : `{ email, username, password(hash), role: "user"|"admin" }` (indexes uniques email/username)
-- [ ] `Restaurant` : `{ name, address, phone, opening_hours }`
-- [ ] `Menu` : `{ restaurant_id(ref), name, description, price, category }`
+- [x] `User` : `{ email, username, password(hash), role: "user"|"admin" }` (indexes uniques email/username)
+- [x] `Restaurant` : `{ name, address, phone, opening_hours }`
+- [x] `Menu` : `{ restaurant_id(ref), name, description, price, category }`
 - [ ] Hooks/validators Mongoose (ex: prix ≥ 0), timestamps
 
 ---
