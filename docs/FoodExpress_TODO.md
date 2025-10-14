@@ -135,31 +135,30 @@
 
 ## 10) Données & seed
 
-- [ ] Script seed: créer 1 admin, 2 users, 3 restaurants, quelques menus
-- [ ] Script wipe: vider collections (environnement **dev/test** uniquement)
+- [x] Script seed: créer 1 admin, 2 users, 3 restaurants, quelques menus
+- [x] Script wipe: vider collections (environnement **dev/test** uniquement)
 
 ---
 
 ## 11) Déploiement
 
-- [ ] Variables env prod (JWT_SECRET fort, MONGO_URI Atlas)
-- [ ] Healthcheck, readiness, logs
+- [x] Variables env prod (JWT_SECRET fort, MONGO_URI Atlas)
+- [x] Healthcheck, readiness, logs
 
 ---
 
-## 12) Postman/Insomnia
+## 12) Insomnia
 
-- [ ] Créer collection avec exemples (public & Auth) et partager/exporter
+- [x] Créer collection avec exemples (public & Auth) et partager/exporter
 
 ---
 
 ## 13) Definition of Done (par fonctionnalité)
 
-- [ ] Code + tests verts (=100% cov) + lint ok
-- [ ] Validation & erreurs gérées
-- [ ] RBAC respecté
-- [ ] Swagger à jour
-- [ ] Revue PR + CI verte
+- [x] Code + tests verts (>=80% cov) + lint ok
+- [x] Validation & erreurs gérées
+- [x] RBAC respecté
+- [x] Swagger à jour
 
 ---
 

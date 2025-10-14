@@ -5,9 +5,10 @@ module.exports = {
     jest: true,
   },
   extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  parser: 'espree',
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: 2021,
+    sourceType: 'script',
   },
   rules: {
     'no-console': 'off',

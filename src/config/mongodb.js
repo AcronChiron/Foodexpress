@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const logger = require('../utils/logger');
 
 const DEFAULT_MAX_RETRIES = 5;
 const DEFAULT_BASE_DELAY_MS = 1000; // backoff base
@@ -12,28 +13,24 @@ async function connect(uri = process.env.MONGO_URI, options = {}) {
   const baseDelay = options.baseDelay ?? DEFAULT_BASE_DELAY_MS;
 
   if (!uri) {
-    console.warn('MONGO_URI not set — skipping MongoDB connection.');
+    logger.warn('MONGO_URI not set — skipping MongoDB connection.');
     return;
   }
 
   mongoose.connection.on('connected', () => {
-    // eslint-disable-next-line no-console
-    console.log('MongoDB connected');
+    logger.info('MongoDB connected');
   });
 
   mongoose.connection.on('error', (err) => {
-    // eslint-disable-next-line no-console
-    console.error('MongoDB connection error:', err && err.message ? err.message : err);
+    logger.error(`MongoDB connection error: ${err && err.message ? err.message : err}`);
   });
 
   mongoose.connection.on('disconnected', () => {
-    // eslint-disable-next-line no-console
-    console.warn('MongoDB disconnected');
+    logger.warn('MongoDB disconnected');
   });
 
   mongoose.connection.on('reconnected', () => {
-    // eslint-disable-next-line no-console
-    console.log('MongoDB reconnected');
+    logger.info('MongoDB reconnected');
   });
 
   let attempt = 0;
@@ -50,19 +47,15 @@ async function connect(uri = process.env.MONGO_URI, options = {}) {
       });
       return; // success
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error(
-        `MongoDB connection attempt ${attempt} failed:`,
-        err && err.message ? err.message : err,
+      logger.error(
+        `MongoDB connection attempt ${attempt} failed: ${err && err.message ? err.message : err}`,
       );
       if (attempt > maxRetries) {
-        // eslint-disable-next-line no-console
-        console.error('MongoDB: max retries reached, giving up.');
+        logger.error('MongoDB: max retries reached, giving up.');
         throw err;
       }
       const delay = baseDelay * Math.pow(2, attempt - 1);
-      // eslint-disable-next-line no-console
-      console.log(`MongoDB: retrying in ${delay}ms...`);
+      logger.info(`MongoDB: retrying in ${delay}ms...`);
       // wait then retry
       // eslint-disable-next-line no-await-in-loop
       await wait(delay);

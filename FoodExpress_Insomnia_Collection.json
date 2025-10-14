@@ -1,0 +1,311 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-10-14T16:30:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.0",
+  "resources": [
+    {
+      "_id": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "workspace",
+      "name": "FoodExpress API",
+      "description": "Collection for FoodExpress API testing - Public and Authenticated endpoints"
+    },
+    {
+      "_id": "env_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000",
+        "jwt_token": "your_jwt_token_here"
+      }
+    },
+    {
+      "_id": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Health Checks",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Liveness Check",
+      "method": "GET",
+      "url": "{{ base_url }}/health",
+      "parentId": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_02j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Readiness Check",
+      "method": "GET",
+      "url": "{{ base_url }}/health/ready",
+      "parentId": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Authentication",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_04j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "User Registration",
+      "method": "POST",
+      "url": "{{ base_url }}/users",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"username\": \"testuser\",\n  \"password\": \"password123\"\n}"
+      },
+      "parentId": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_05j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "User Login",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "parentId": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Users",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_07j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Get User Profile (Self)",
+      "method": "GET",
+      "url": "{{ base_url }}/users/:userId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "userId",
+          "value": "user_id_here"
+        }
+      ],
+      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_08j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Update User Profile (Self)",
+      "method": "PUT",
+      "url": "{{ base_url }}/users/:userId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "userId",
+          "value": "user_id_here"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"updateduser\"\n}"
+      },
+      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_09j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Delete User (Self)",
+      "method": "DELETE",
+      "url": "{{ base_url }}/users/:userId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "userId",
+          "value": "user_id_here"
+        }
+      ],
+      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Restaurants",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_11j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Get Restaurants (Public)",
+      "method": "GET",
+      "url": "{{ base_url }}/restaurants?sort=name&page=1&limit=10",
+      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_12j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Create Restaurant (Admin)",
+      "method": "POST",
+      "url": "{{ base_url }}/restaurants",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"New Restaurant\",\n  \"address\": \"123 Main St\",\n  \"phone\": \"+33123456789\",\n  \"opening_hours\": \"Mon-Fri 9am-10pm\"\n}"
+      },
+      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_13j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Update Restaurant (Admin)",
+      "method": "PUT",
+      "url": "{{ base_url }}/restaurants/:restaurantId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "restaurantId",
+          "value": "restaurant_id_here"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Updated Restaurant\"\n}"
+      },
+      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_14j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Delete Restaurant (Admin)",
+      "method": "DELETE",
+      "url": "{{ base_url }}/restaurants/:restaurantId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "restaurantId",
+          "value": "restaurant_id_here"
+        }
+      ],
+      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Menus",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_16j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Get Menus (Public)",
+      "method": "GET",
+      "url": "{{ base_url }}/menus?sort=price&page=1&limit=10",
+      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_17j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Create Menu (Admin)",
+      "method": "POST",
+      "url": "{{ base_url }}/menus",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"restaurant_id\": \"restaurant_id_here\",\n  \"name\": \"New Menu Item\",\n  \"description\": \"Delicious food\",\n  \"price\": 15.99,\n  \"category\": \"Main Course\"\n}"
+      },
+      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_18j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Update Menu (Admin)",
+      "method": "PUT",
+      "url": "{{ base_url }}/menus/:menuId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "menuId",
+          "value": "menu_id_here"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"price\": 18.99\n}"
+      },
+      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_19j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "Delete Menu (Admin)",
+      "method": "DELETE",
+      "url": "{{ base_url }}/menus/:menuId",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ jwt_token }}"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "menuId",
+          "value": "menu_id_here"
+        }
+      ],
+      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "grp_20j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request_group",
+      "name": "Documentation",
+      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    },
+    {
+      "_id": "req_21j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_type": "request",
+      "name": "API Documentation",
+      "method": "GET",
+      "url": "{{ base_url }}/api-docs",
+      "parentId": "grp_20j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+    }
+  ]
+}
