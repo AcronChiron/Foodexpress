@@ -142,10 +142,8 @@
 
 ## 11) Déploiement
 
-- [ ] Dockerfile (alpine), .dockerignore
 - [ ] Variables env prod (JWT_SECRET fort, MONGO_URI Atlas)
 - [ ] Healthcheck, readiness, logs
-- [ ] Hébergement: Render/Vercel/Railway (ou VM) + MongoDB Atlas
 
 ---
 

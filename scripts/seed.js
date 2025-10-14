@@ -4,6 +4,8 @@
    WARNING: run in dev/test only
 */
 
+// load .env for local dev
+require('dotenv').config();
 const { connect, close } = require('../src/config/mongodb');
 const User = require('../src/models/User');
 const Restaurant = require('../src/models/Restaurant');
