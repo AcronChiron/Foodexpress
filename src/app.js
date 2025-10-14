@@ -19,7 +19,10 @@ app.use(morgan('dev'));
 try {
   const swaggerUi = require('swagger-ui-express');
   const swaggerSpec = require('./swagger');
+  // UI
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  // raw JSON for programmatic consumption
+  app.get('/api-docs.json', (req, res) => res.json(swaggerSpec));
 } catch (e) {
   // swagger-ui-express not installed — skip mounting docs
 }
