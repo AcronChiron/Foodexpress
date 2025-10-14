@@ -29,6 +29,29 @@ describe('users - register/login/update/delete', () => {
     expect(res.json).toHaveBeenCalledWith({ data: { email: 'new@b' } });
   });
 
+  test('register -> conflict when username exists', async () => {
+    const req = { body: { email: 'a@b', username: 'u', password: 'p' } };
+    // existing object has different email but same username
+    User.findOne = jest
+      .fn()
+      .mockReturnValue({ lean: () => Promise.resolve({ email: 'other@b', username: 'u' }) });
+    const next = jest.fn();
+    await register(req, {}, next);
+    const err = next.mock.calls[0][0];
+    expect(err.status).toBe(409);
+    expect(err.message).toMatch(/username/);
+  });
+
+  test('register -> DB error forwarded to next', async () => {
+    const req = { body: { email: 'x@x', username: 'u', password: 'p' } };
+    User.findOne = jest.fn().mockImplementation(() => {
+      throw new Error('db fail');
+    });
+    const next = jest.fn();
+    await register(req, {}, next);
+    expect(next).toHaveBeenCalled();
+  });
+
   test('login -> invalid credentials when user not found', async () => {
     const req = { body: { email: 'x', password: 'p' } };
     User.findOne = jest.fn().mockReturnValue({ select: () => Promise.resolve(null) });
@@ -87,6 +110,15 @@ describe('users - register/login/update/delete', () => {
     const next = jest.fn();
     await require('../src/controllers/userController').getUser(req, res, next);
     expect(res.json).toHaveBeenCalledWith({ data: user });
+  });
+
+  test('getUser -> not found -> next 404', async () => {
+    const req = { params: { id: 'missing' } };
+    User.findById = jest.fn().mockReturnValue({ lean: () => Promise.resolve(null) });
+    const next = jest.fn();
+    await require('../src/controllers/userController').getUser(req, {}, next);
+    const err = next.mock.calls[0][0];
+    expect(err.status).toBe(404);
   });
 
   test('updateUser -> success', async () => {

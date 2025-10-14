@@ -92,6 +92,18 @@ describe('menus - controller', () => {
     expect(err.status).toBe(404);
   });
 
+  test('deleteMenu -> success 204', async () => {
+    const req = { params: { id: '1' } };
+    Menu.findByIdAndDelete = jest
+      .fn()
+      .mockReturnValue({ lean: () => Promise.resolve({ _id: '1' }) });
+    const res = { status: jest.fn(() => res), end: jest.fn() };
+    const next = jest.fn();
+    await deleteMenu(req, res, next);
+    expect(res.status).toHaveBeenCalledWith(204);
+    expect(res.end).toHaveBeenCalled();
+  });
+
   test('createMenu -> save throws -> next called', async () => {
     const req = { body: { restaurant_id: '1', name: 'X', price: 5 } };
     const saveMock = jest.fn().mockRejectedValue(new Error('save failed'));

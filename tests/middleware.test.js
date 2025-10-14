@@ -54,6 +54,29 @@ describe('authMiddleware', () => {
     expect(req.user).toHaveProperty('id', 'abc');
     expect(req.user).toHaveProperty('role', 'user');
   });
+
+  describe('auth jwt edge cases', () => {
+    test('authMiddleware accepts capitalized Authorization header', async () => {
+      const { signToken } = require('../src/utils/jwt');
+      const token = signToken({ id: 'cap', role: 'user' });
+      const req = { headers: { Authorization: `Bearer ${token}` } };
+      const res = {};
+      const next = jest.fn();
+      const auth = require('../src/middleware/auth');
+      await auth(req, res, next);
+      expect(req.user.id).toBe('cap');
+    });
+
+    test('verifyToken throws on bad token (auth middleware)', async () => {
+      const req = { headers: { authorization: 'Bearer bad.token' } };
+      const res = {};
+      const next = jest.fn();
+      const auth = require('../src/middleware/auth');
+      await auth(req, res, next);
+      const err = next.mock.calls[0][0];
+      expect(err.status).toBe(401);
+    });
+  });
 });
 
 describe('pagination aliases', () => {

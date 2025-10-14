@@ -15,4 +15,10 @@ describe('model validations', () => {
     expect(err).toBeDefined();
     expect(err.errors).toHaveProperty('price');
   });
+
+  test('Restaurant phone empty is allowed', () => {
+    const r = new Restaurant({ name: 'T' });
+    const err = r.validateSync();
+    expect(err).toBeUndefined();
+  });
 });

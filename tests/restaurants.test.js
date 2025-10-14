@@ -92,6 +92,18 @@ describe('restaurants - controller', () => {
     expect(err.status).toBe(404);
   });
 
+  test('deleteRestaurant -> success 204', async () => {
+    const req = { params: { id: '1' } };
+    Restaurant.findByIdAndDelete = jest
+      .fn()
+      .mockReturnValue({ lean: () => Promise.resolve({ _id: '1' }) });
+    const res = { status: jest.fn(() => res), end: jest.fn() };
+    const next = jest.fn();
+    await deleteRestaurant(req, res, next);
+    expect(res.status).toHaveBeenCalledWith(204);
+    expect(res.end).toHaveBeenCalled();
+  });
+
   test('createRestaurant -> save throws -> next called', async () => {
     const req = { body: { name: 'X' } };
     const saveMock = jest.fn().mockRejectedValue(new Error('save failed'));
