@@ -42,4 +42,24 @@ describe('authMiddleware', () => {
     expect(err).toBeInstanceOf(Error);
     expect(err.status).toBe(401);
   });
+
+  test('authMiddleware success attaches req.user', async () => {
+    // create a token using utils
+    const { signToken } = require('../src/utils/jwt');
+    const token = signToken({ id: 'abc', role: 'user' });
+    const req = { headers: { authorization: `Bearer ${token}` } };
+    const res = {};
+    const next = jest.fn();
+    await authMiddleware(req, res, next);
+    expect(req.user).toHaveProperty('id', 'abc');
+    expect(req.user).toHaveProperty('role', 'user');
+  });
+});
+
+describe('pagination aliases', () => {
+  test('parsePagination and parseSort alias functions exist', () => {
+    const { parsePagination, parseSort } = require('../src/utils/pagination');
+    expect(typeof parsePagination).toBe('function');
+    expect(typeof parseSort).toBe('function');
+  });
 });

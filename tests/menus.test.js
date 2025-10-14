@@ -54,6 +54,26 @@ describe('menus - controller', () => {
     expect(res.status).toHaveBeenCalledWith(201);
   });
 
+  test('getMenu -> success returns data', async () => {
+    const req = { params: { id: '1' } };
+    const m = { _id: '1', name: 'Dish' };
+    Menu.findById = jest.fn().mockReturnValue({ lean: () => Promise.resolve(m) });
+    const res = makeRes();
+    const next = jest.fn();
+    await getMenu(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: m });
+  });
+
+  test('updateMenu -> success', async () => {
+    const req = { params: { id: '1' }, body: { name: 'NewName' } };
+    const inst = { save: jest.fn().mockResolvedValue(), toJSON: () => ({ name: 'NewName' }) };
+    Menu.findById = jest.fn().mockResolvedValue(inst);
+    const res = makeRes();
+    const next = jest.fn();
+    await updateMenu(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: { name: 'NewName' } });
+  });
+
   test('updateMenu not found -> next 404', async () => {
     const req = { params: { id: '1' }, body: {} };
     Menu.findById = jest.fn().mockResolvedValue(null);
@@ -70,5 +90,15 @@ describe('menus - controller', () => {
     await deleteMenu(req, {}, next);
     const err = next.mock.calls[0][0];
     expect(err.status).toBe(404);
+  });
+
+  test('createMenu -> save throws -> next called', async () => {
+    const req = { body: { restaurant_id: '1', name: 'X', price: 5 } };
+    const saveMock = jest.fn().mockRejectedValue(new Error('save failed'));
+    Menu.mockImplementation(() => ({ save: saveMock }));
+    const res = { status: jest.fn(() => res), json: jest.fn() };
+    const next = jest.fn();
+    await createMenu(req, res, next);
+    expect(next).toHaveBeenCalled();
   });
 });

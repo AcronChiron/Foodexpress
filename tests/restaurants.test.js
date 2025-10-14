@@ -54,6 +54,26 @@ describe('restaurants - controller', () => {
     expect(res.status).toHaveBeenCalledWith(201);
   });
 
+  test('getRestaurant -> success returns data', async () => {
+    const req = { params: { id: '1' } };
+    const r = { _id: '1', name: 'R' };
+    Restaurant.findById = jest.fn().mockReturnValue({ lean: () => Promise.resolve(r) });
+    const res = makeRes();
+    const next = jest.fn();
+    await getRestaurant(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: r });
+  });
+
+  test('updateRestaurant -> success', async () => {
+    const req = { params: { id: '1' }, body: { name: 'Updated' } };
+    const inst = { save: jest.fn().mockResolvedValue(), toJSON: () => ({ name: 'Updated' }) };
+    Restaurant.findById = jest.fn().mockResolvedValue(inst);
+    const res = makeRes();
+    const next = jest.fn();
+    await updateRestaurant(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: { name: 'Updated' } });
+  });
+
   test('updateRestaurant not found -> next 404', async () => {
     const req = { params: { id: '1' }, body: {} };
     Restaurant.findById = jest.fn().mockResolvedValue(null);
@@ -70,5 +90,15 @@ describe('restaurants - controller', () => {
     await deleteRestaurant(req, {}, next);
     const err = next.mock.calls[0][0];
     expect(err.status).toBe(404);
+  });
+
+  test('createRestaurant -> save throws -> next called', async () => {
+    const req = { body: { name: 'X' } };
+    const saveMock = jest.fn().mockRejectedValue(new Error('save failed'));
+    Restaurant.mockImplementation(() => ({ save: saveMock }));
+    const res = { status: jest.fn(() => res), json: jest.fn() };
+    const next = jest.fn();
+    await createRestaurant(req, res, next);
+    expect(next).toHaveBeenCalled();
   });
 });

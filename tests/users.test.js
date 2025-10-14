@@ -78,6 +78,38 @@ describe('users - register/login/update/delete', () => {
     const err = next.mock.calls[0][0];
     expect(err.status).toBe(404);
   });
+
+  test('getUser -> success returns data', async () => {
+    const req = { params: { id: '1' } };
+    const user = { _id: '1', email: 'a@b' };
+    User.findById = jest.fn().mockReturnValue({ lean: () => Promise.resolve(user) });
+    const res = { json: jest.fn() };
+    const next = jest.fn();
+    await require('../src/controllers/userController').getUser(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: user });
+  });
+
+  test('updateUser -> success', async () => {
+    const req = { params: { id: '1' }, body: { username: 'new' } };
+    const user = { save: jest.fn().mockResolvedValue(), toJSON: () => ({ username: 'new' }) };
+    User.findById = jest.fn().mockResolvedValue(user);
+    const res = { json: jest.fn() };
+    const next = jest.fn();
+    await updateUser(req, res, next);
+    expect(res.json).toHaveBeenCalledWith({ data: { username: 'new' } });
+  });
+
+  test('deleteUser -> success 204', async () => {
+    const req = { params: { id: '1' } };
+    User.findByIdAndDelete = jest
+      .fn()
+      .mockReturnValue({ lean: () => Promise.resolve({ _id: '1' }) });
+    const res = { status: jest.fn(() => res), end: jest.fn() };
+    const next = jest.fn();
+    await deleteUser(req, res, next);
+    expect(res.status).toHaveBeenCalledWith(204);
+    expect(res.end).toHaveBeenCalled();
+  });
 });
 // Placeholder test for users
 test('placeholder users test', () => {
