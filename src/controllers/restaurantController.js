@@ -44,6 +44,12 @@ async function getRestaurant(req, res, next) {
 
 async function createRestaurant(req, res, next) {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      const err = new Error('Request body is required');
+      err.status = 400;
+      return next(err);
+    }
+
     const payload = req.body;
     const r = new Restaurant(payload);
     await r.save();
@@ -55,6 +61,12 @@ async function createRestaurant(req, res, next) {
 
 async function updateRestaurant(req, res, next) {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      const err = new Error('Request body is required');
+      err.status = 400;
+      return next(err);
+    }
+
     const { id } = req.params;
     const updates = req.body;
     const r = await Restaurant.findById(id);

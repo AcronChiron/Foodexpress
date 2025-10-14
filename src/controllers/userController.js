@@ -9,7 +9,19 @@ const userCreateSchema = Joi.object({
 
 async function register(req, res, next) {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      const err = new Error('Request body is required');
+      err.status = 400;
+      return next(err);
+    }
+
     const { email, username, password } = req.body;
+    if (!email || !username || !password) {
+      const err = new Error('Email, username, and password are required');
+      err.status = 400;
+      return next(err);
+    }
+
     // Check unique constraints
     const existing = await User.findOne({ $or: [{ email }, { username }] }).lean();
     if (existing) {

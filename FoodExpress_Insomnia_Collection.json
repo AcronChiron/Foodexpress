@@ -5,160 +5,214 @@
   "__export_source": "insomnia.desktop.app:v2023.5.0",
   "resources": [
     {
-      "_id": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "wrk_foodexpress_api_workspace",
       "_type": "workspace",
-      "name": "FoodExpress API",
-      "description": "Collection for FoodExpress API testing - Public and Authenticated endpoints"
+      "name": "🍕 FoodExpress API - Complete Collection",
+      "description": "Complete Insomnia collection for FoodExpress API testing with working examples, environments, and automated workflows"
     },
     {
-      "_id": "env_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "env_development",
       "_type": "environment",
-      "name": "Base Environment",
+      "name": "Development",
       "data": {
         "base_url": "http://localhost:3000",
-        "jwt_token": "your_jwt_token_here"
+        "jwt_token": "",
+        "user_id": "",
+        "restaurant_id": "",
+        "menu_id": "",
+        "admin_email": "admin@example.com",
+        "admin_password": "password",
+        "test_user_email": "alice@example.com",
+        "test_user_password": "password",
+        "new_user_email": "john.doe@example.com",
+        "new_user_username": "johndoe",
+        "new_user_password": "securepass123"
       }
     },
     {
-      "_id": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
-      "_type": "request_group",
-      "name": "Health Checks",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "_id": "env_production",
+      "_type": "environment",
+      "name": "Production",
+      "data": {
+        "base_url": "https://your-production-api.com",
+        "jwt_token": "",
+        "user_id": "",
+        "restaurant_id": "",
+        "menu_id": "",
+        "admin_email": "your-admin@example.com",
+        "admin_password": "your-secure-password"
+      }
     },
     {
-      "_id": "req_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "grp_health_checks",
+      "_type": "request_group",
+      "name": "🏥 Health Checks",
+      "description": "API health monitoring endpoints",
+      "parentId": "wrk_foodexpress_api_workspace"
+    },
+    {
+      "_id": "req_health_liveness",
       "_type": "request",
-      "name": "Liveness Check",
+      "name": "✅ Liveness Check",
+      "description": "Check if the application is running",
       "method": "GET",
       "url": "{{ base_url }}/health",
-      "parentId": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_health_checks"
     },
     {
-      "_id": "req_02j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_health_readiness",
       "_type": "request",
-      "name": "Readiness Check",
+      "name": "🔄 Readiness Check",
+      "description": "Check if the application is ready (database connected)",
       "method": "GET",
       "url": "{{ base_url }}/health/ready",
-      "parentId": "grp_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_health_checks"
     },
     {
-      "_id": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "grp_authentication",
       "_type": "request_group",
-      "name": "Authentication",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "name": "🔐 Authentication",
+      "description": "User registration and login endpoints",
+      "parentId": "wrk_foodexpress_api_workspace"
     },
     {
-      "_id": "req_04j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_register_user",
       "_type": "request",
-      "name": "User Registration",
+      "name": "📝 Register New User",
+      "description": "Create a new user account",
       "method": "POST",
       "url": "{{ base_url }}/users",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"email\": \"user@example.com\",\n  \"username\": \"testuser\",\n  \"password\": \"password123\"\n}"
+        "text": "{\n  \"email\": \"{{ new_user_email }}\",\n  \"username\": \"{{ new_user_username }}\",\n  \"password\": \"{{ new_user_password }}\"\n}"
       },
-      "parentId": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_authentication"
     },
     {
-      "_id": "req_05j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_login_admin",
       "_type": "request",
-      "name": "User Login",
+      "name": "🔑 Admin Login",
+      "description": "Login as admin user (stores JWT token)",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+        "text": "{\n  \"email\": \"{{ admin_email }}\",\n  \"password\": \"{{ admin_password }}\"\n}"
       },
-      "parentId": "grp_03j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_authentication"
     },
     {
-      "_id": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_login_user",
+      "_type": "request",
+      "name": "👤 User Login",
+      "description": "Login as regular user (stores JWT token)",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"{{ test_user_email }}\",\n  \"password\": \"{{ test_user_password }}\"\n}"
+      },
+      "parentId": "grp_authentication"
+    },
+    {
+      "_id": "req_login_new_user",
+      "_type": "request",
+      "name": "🆕 Login New User",
+      "description": "Login with newly created user account",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"{{ new_user_email }}\",\n  \"password\": \"{{ new_user_password }}\"\n}"
+      },
+      "parentId": "grp_authentication"
+    },
+    {
+      "_id": "grp_users",
       "_type": "request_group",
-      "name": "Users",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "name": "👥 User Management",
+      "description": "User profile management endpoints",
+      "parentId": "wrk_foodexpress_api_workspace"
     },
     {
-      "_id": "req_07j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_get_user_profile",
       "_type": "request",
-      "name": "Get User Profile (Self)",
+      "name": "👤 Get User Profile",
+      "description": "Get current user profile information",
       "method": "GET",
-      "url": "{{ base_url }}/users/:userId",
+      "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
         }
       ],
-      "parameters": [
-        {
-          "name": "userId",
-          "value": "user_id_here"
-        }
-      ],
-      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_users"
     },
     {
-      "_id": "req_08j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_update_user_profile",
       "_type": "request",
-      "name": "Update User Profile (Self)",
+      "name": "✏️ Update User Profile",
+      "description": "Update current user profile",
       "method": "PUT",
-      "url": "{{ base_url }}/users/:userId",
+      "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
-        }
-      ],
-      "parameters": [
-        {
-          "name": "userId",
-          "value": "user_id_here"
         }
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"username\": \"updateduser\"\n}"
+        "text": "{\n  \"username\": \"updated_username\",\n  \"email\": \"newemail@example.com\"\n}"
       },
-      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_users"
     },
     {
-      "_id": "req_09j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_delete_user",
       "_type": "request",
-      "name": "Delete User (Self)",
+      "name": "🗑️ Delete User Account",
+      "description": "Delete current user account",
       "method": "DELETE",
-      "url": "{{ base_url }}/users/:userId",
+      "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
         }
       ],
-      "parameters": [
-        {
-          "name": "userId",
-          "value": "user_id_here"
-        }
-      ],
-      "parentId": "grp_06j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_users"
     },
     {
-      "_id": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "grp_restaurants",
       "_type": "request_group",
-      "name": "Restaurants",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "name": "🏪 Restaurant Management",
+      "description": "Restaurant CRUD operations (Admin only for CUD)",
+      "parentId": "wrk_foodexpress_api_workspace"
     },
     {
-      "_id": "req_11j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_list_restaurants",
       "_type": "request",
-      "name": "Get Restaurants (Public)",
+      "name": "📋 List Restaurants",
+      "description": "Get paginated list of restaurants (public)",
       "method": "GET",
-      "url": "{{ base_url }}/restaurants?sort=name&page=1&limit=10",
-      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "url": "{{ base_url }}/restaurants?page=1&limit=10&sort=name",
+      "parentId": "grp_restaurants"
     },
     {
-      "_id": "req_12j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_get_restaurant_details",
       "_type": "request",
-      "name": "Create Restaurant (Admin)",
+      "name": "🏪 Get Restaurant Details",
+      "description": "Get specific restaurant information",
+      "method": "GET",
+      "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
+      "parentId": "grp_restaurants"
+    },
+    {
+      "_id": "req_create_restaurant",
+      "_type": "request",
+      "name": "➕ Create Restaurant (Admin)",
+      "description": "Create a new restaurant (Admin only)",
       "method": "POST",
       "url": "{{ base_url }}/restaurants",
       "headers": [
@@ -169,72 +223,83 @@
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"name\": \"New Restaurant\",\n  \"address\": \"123 Main St\",\n  \"phone\": \"+33123456789\",\n  \"opening_hours\": \"Mon-Fri 9am-10pm\"\n}"
+        "text": "{\n  \"name\": \"Le Gourmet Parisien\",\n  \"address\": \"15 Rue de la Paix, 75002 Paris\",\n  \"phone\": \"+33142601234\",\n  \"opening_hours\": \"Lundi-Dimanche: 12h00-23h00\"\n}"
       },
-      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_restaurants"
     },
     {
-      "_id": "req_13j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_update_restaurant",
       "_type": "request",
-      "name": "Update Restaurant (Admin)",
+      "name": "✏️ Update Restaurant (Admin)",
+      "description": "Update restaurant information (Admin only)",
       "method": "PUT",
-      "url": "{{ base_url }}/restaurants/:restaurantId",
+      "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
-        }
-      ],
-      "parameters": [
-        {
-          "name": "restaurantId",
-          "value": "restaurant_id_here"
         }
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"name\": \"Updated Restaurant\"\n}"
+        "text": "{\n  \"name\": \"Le Gourmet Parisien - Updated\",\n  \"opening_hours\": \"Lundi-Samedi: 12h00-23h00, Dimanche: Fermé\"\n}"
       },
-      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_restaurants"
     },
     {
-      "_id": "req_14j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_delete_restaurant",
       "_type": "request",
-      "name": "Delete Restaurant (Admin)",
+      "name": "🗑️ Delete Restaurant (Admin)",
+      "description": "Delete a restaurant (Admin only)",
       "method": "DELETE",
-      "url": "{{ base_url }}/restaurants/:restaurantId",
+      "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
         }
       ],
-      "parameters": [
-        {
-          "name": "restaurantId",
-          "value": "restaurant_id_here"
-        }
-      ],
-      "parentId": "grp_10j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_restaurants"
     },
     {
-      "_id": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "grp_menus",
       "_type": "request_group",
-      "name": "Menus",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "name": "🍽️ Menu Management",
+      "description": "Menu CRUD operations (Admin only for CUD)",
+      "parentId": "wrk_foodexpress_api_workspace"
     },
     {
-      "_id": "req_16j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_list_menus",
       "_type": "request",
-      "name": "Get Menus (Public)",
+      "name": "📋 List Menus",
+      "description": "Get paginated list of menus (public)",
       "method": "GET",
-      "url": "{{ base_url }}/menus?sort=price&page=1&limit=10",
-      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "url": "{{ base_url }}/menus?page=1&limit=10&sort=price",
+      "parentId": "grp_menus"
     },
     {
-      "_id": "req_17j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_list_menus_by_restaurant",
       "_type": "request",
-      "name": "Create Menu (Admin)",
+      "name": "🏪 List Menus by Restaurant",
+      "description": "Get menus for a specific restaurant",
+      "method": "GET",
+      "url": "{{ base_url }}/menus?restaurant_id={{ restaurant_id }}",
+      "parentId": "grp_menus"
+    },
+    {
+      "_id": "req_get_menu_details",
+      "_type": "request",
+      "name": "🍽️ Get Menu Details",
+      "description": "Get specific menu information",
+      "method": "GET",
+      "url": "{{ base_url }}/menus/{{ menu_id }}",
+      "parentId": "grp_menus"
+    },
+    {
+      "_id": "req_create_menu",
+      "_type": "request",
+      "name": "➕ Create Menu Item (Admin)",
+      "description": "Create a new menu item (Admin only)",
       "method": "POST",
       "url": "{{ base_url }}/menus",
       "headers": [
@@ -245,67 +310,163 @@
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"restaurant_id\": \"restaurant_id_here\",\n  \"name\": \"New Menu Item\",\n  \"description\": \"Delicious food\",\n  \"price\": 15.99,\n  \"category\": \"Main Course\"\n}"
+        "text": "{\n  \"restaurant_id\": \"{{ restaurant_id }}\",\n  \"name\": \"Boeuf Bourguignon\",\n  \"description\": \"Tendre bœuf mijoté au vin rouge avec légumes de saison\",\n  \"price\": 28.50,\n  \"category\": \"Plat principal\"\n}"
       },
-      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_menus"
     },
     {
-      "_id": "req_18j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_update_menu",
       "_type": "request",
-      "name": "Update Menu (Admin)",
+      "name": "✏️ Update Menu Item (Admin)",
+      "description": "Update menu item information (Admin only)",
       "method": "PUT",
-      "url": "{{ base_url }}/menus/:menuId",
+      "url": "{{ base_url }}/menus/{{ menu_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
-        }
-      ],
-      "parameters": [
-        {
-          "name": "menuId",
-          "value": "menu_id_here"
         }
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"price\": 18.99\n}"
+        "text": "{\n  \"price\": 32.00,\n  \"description\": \"Tendre bœuf mijoté au vin rouge avec légumes de saison - Spécialité de la maison\"\n}"
       },
-      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_menus"
     },
     {
-      "_id": "req_19j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_delete_menu",
       "_type": "request",
-      "name": "Delete Menu (Admin)",
+      "name": "🗑️ Delete Menu Item (Admin)",
+      "description": "Delete a menu item (Admin only)",
       "method": "DELETE",
-      "url": "{{ base_url }}/menus/:menuId",
+      "url": "{{ base_url }}/menus/{{ menu_id }}",
       "headers": [
         {
           "name": "Authorization",
           "value": "Bearer {{ jwt_token }}"
         }
       ],
-      "parameters": [
-        {
-          "name": "menuId",
-          "value": "menu_id_here"
-        }
-      ],
-      "parentId": "grp_15j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_menus"
     },
     {
-      "_id": "grp_20j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "grp_workflows",
       "_type": "request_group",
-      "name": "Documentation",
-      "parentId": "wrk_01j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "name": "🔄 Complete Workflows",
+      "description": "End-to-end testing scenarios",
+      "parentId": "wrk_foodexpress_api_workspace"
     },
     {
-      "_id": "req_21j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4",
+      "_id": "req_workflow_admin_full",
       "_type": "request",
-      "name": "API Documentation",
+      "name": "👑 Admin: Complete Restaurant + Menu Creation",
+      "description": "Complete workflow: Login as admin → Create restaurant → Create menu → List everything",
+      "method": "GET",
+      "url": "{{ base_url }}/health",
+      "parentId": "grp_workflows"
+    },
+    {
+      "_id": "req_workflow_user_browse",
+      "_type": "request",
+      "name": "👤 User: Browse Restaurants & Menus",
+      "description": "User workflow: Browse restaurants and menus without authentication",
+      "method": "GET",
+      "url": "{{ base_url }}/restaurants",
+      "parentId": "grp_workflows"
+    },
+    {
+      "_id": "grp_documentation",
+      "_type": "request_group",
+      "name": "📚 API Documentation",
+      "description": "API documentation and specifications",
+      "parentId": "wrk_foodexpress_api_workspace"
+    },
+    {
+      "_id": "req_api_docs_ui",
+      "_type": "request",
+      "name": "📖 Swagger UI Documentation",
+      "description": "Interactive API documentation with Swagger UI",
       "method": "GET",
       "url": "{{ base_url }}/api-docs",
-      "parentId": "grp_20j8a1b2c3d4e5f6g7h8i9j0k1l2m3n4"
+      "parentId": "grp_documentation"
+    },
+    {
+      "_id": "req_api_docs_json",
+      "_type": "request",
+      "name": "📋 OpenAPI JSON Specification",
+      "description": "Raw OpenAPI/Swagger JSON specification",
+      "method": "GET",
+      "url": "{{ base_url }}/api-docs.json",
+      "parentId": "grp_documentation"
+    },
+    {
+      "_id": "grp_error_testing",
+      "_type": "request_group",
+      "name": "🚨 Error Testing",
+      "description": "Test error scenarios and edge cases",
+      "parentId": "wrk_foodexpress_api_workspace"
+    },
+    {
+      "_id": "req_invalid_auth",
+      "_type": "request",
+      "name": "❌ Invalid Authentication",
+      "description": "Test invalid JWT token",
+      "method": "GET",
+      "url": "{{ base_url }}/users/invalid-id",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer invalid.jwt.token"
+        }
+      ],
+      "parentId": "grp_error_testing"
+    },
+    {
+      "_id": "req_not_found",
+      "_type": "request",
+      "name": "🔍 Resource Not Found",
+      "description": "Test 404 error for non-existent resource",
+      "method": "GET",
+      "url": "{{ base_url }}/restaurants/507f1f77bcf86cd799439011",
+      "parentId": "grp_error_testing"
+    },
+    {
+      "_id": "req_invalid_data",
+      "_type": "request",
+      "name": "📝 Invalid Request Data",
+      "description": "Test validation errors",
+      "method": "POST",
+      "url": "{{ base_url }}/users",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"invalid-email\",\n  \"username\": \"\",\n  \"password\": \"123\"\n}"
+      },
+      "parentId": "grp_error_testing"
+    },
+    {
+      "_id": "req_missing_body",
+      "_type": "request",
+      "name": "🚫 Missing Request Body",
+      "description": "Test missing req.body handling",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": ""
+      },
+      "parentId": "grp_error_testing"
+    },
+    {
+      "_id": "req_invalid_body_format",
+      "_type": "request",
+      "name": "📄 Invalid Body Format",
+      "description": "Test invalid JSON body handling",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "not-json-content"
+      },
+      "parentId": "grp_error_testing"
     }
   ]
 }

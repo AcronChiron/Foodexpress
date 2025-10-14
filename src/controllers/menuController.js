@@ -45,6 +45,12 @@ async function getMenu(req, res, next) {
 
 async function createMenu(req, res, next) {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      const err = new Error('Request body is required');
+      err.status = 400;
+      return next(err);
+    }
+
     const payload = req.body;
     const m = new Menu(payload);
     await m.save();
@@ -56,6 +62,12 @@ async function createMenu(req, res, next) {
 
 async function updateMenu(req, res, next) {
   try {
+    if (!req.body || typeof req.body !== 'object') {
+      const err = new Error('Request body is required');
+      err.status = 400;
+      return next(err);
+    }
+
     const { id } = req.params;
     const updates = req.body;
     const m = await Menu.findById(id);
