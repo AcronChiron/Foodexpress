@@ -126,19 +126,10 @@
 
 ## 8) Documentation OpenAPI (jour 4)
 
-- [ ] `swagger-jsdoc` + `swagger-ui-express` (`/api-docs`)
-- [ ] Décrire schémas, security schemes (JWT), réponses d’erreur
-- [ ] Exemple de requêtes & `curl` dans la doc
-- [ ] Vérifier que toutes les routes exposées sont documentées
-
----
-
-## 9) DX/CI & qualité
-
-- [ ] ESLint + Prettier + `npm run lint` (CI bloque en cas d’erreur)
-- [ ] GitHub Actions: lint + tests + rapport de couverture
-- [ ] Commit lint (facultatif) + Conventional Commits
-- [ ] Logger HTTP (`morgan`) et logger d’app (pino/winston) (facultatif)
+- [x] `swagger-jsdoc` + `swagger-ui-express` (`/api-docs`)
+- [x] Décrire schémas, security schemes (JWT), réponses d’erreur
+- [x] Exemple de requêtes & `curl` dans la doc
+- [x] Vérifier que toutes les routes exposées sont documentées
 
 ---
 
