@@ -118,9 +118,9 @@
   - [x] Rôles (admin vs user)
   - [x] Users: self-update/delete et interdictions
   - [x] Menus: tri par `price`, pagination
-- [ ] Couverture (`nyc`) = **100%** lignes/fonctions/branches
+- [x] Couverture (`nyc`) = **100%** lignes/fonctions/branches
 - [x] Mock DB (si besoin) **ou** base Mongo test dédiée
-- [ ] Seeds de test (fixtures) minimales
+- [x] Seeds de test (fixtures) minimales
 
 ---
 

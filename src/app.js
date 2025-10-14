@@ -15,6 +15,15 @@ app.use(cors(getCorsOptionsFromEnv()));
 app.use(express.json());
 app.use(morgan('dev'));
 
+// Swagger UI (optional)
+try {
+  const swaggerUi = require('swagger-ui-express');
+  const swaggerSpec = require('./swagger');
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+} catch (e) {
+  // swagger-ui-express not installed — skip mounting docs
+}
+
 // Sanity route
 app.get('/health', (req, res) => {
   res.json({ data: { status: 'ok' } });
