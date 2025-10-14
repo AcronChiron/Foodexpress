@@ -24,6 +24,7 @@ async function seed() {
       password: 'password',
       role: 'admin',
     });
+    console.log(`Admin created: ${admin.username}`);
 
     // create 2 users
     const user1 = await User.create({
@@ -36,6 +37,7 @@ async function seed() {
       username: 'bob',
       password: 'password',
     });
+    console.log(`Users created: ${user1.username}, ${user2.username}`);
 
     // create 3 restaurants
     const r1 = await Restaurant.create({

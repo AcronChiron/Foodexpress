@@ -77,9 +77,9 @@ FoodExpress est une API REST complète pour la gestion de restaurants et de menu
 6. **Vérifier le fonctionnement**
 
    Ouvrez votre navigateur et allez sur :
-   - **API** : http://localhost:3000
-   - **Documentation Swagger** : http://localhost:3000/api-docs
-   - **Health Check** : http://localhost:3000/health
+   - **API** : `http://localhost:3000`
+   - **Documentation Swagger** : `http://localhost:3000/api-docs`
+   - **Health Check** : `http://localhost:3000/health`
 
 ## 📖 Utilisation de l'API
 
@@ -322,7 +322,7 @@ src/
 
 La documentation complète de l'API est disponible via Swagger UI :
 
-**http://localhost:3000/api-docs**
+`http://localhost:3000/api-docs`
 
 ### Fonctionnalités de la documentation
 

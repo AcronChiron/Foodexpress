@@ -205,8 +205,6 @@ jest.mock('../src/models/Menu');
 
 // get fresh references to the mocked modules so we can configure them below
 const MockedUser = require('../src/models/User');
-const MockedRestaurant = require('../src/models/Restaurant');
-const MockedMenu = require('../src/models/Menu');
 
 const { login } = require('../src/controllers/authController');
 const { listRestaurants } = require('../src/controllers/restaurantController');

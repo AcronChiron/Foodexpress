@@ -164,18 +164,8 @@
 
 ## À vérifier dans **Day 4** (début de projet fourni)
 
-- [ ] Présence de l’app Express + route de test
-- [ ] Connexion Mongo (Mongoose) opérationnelle
-- [ ] Squelettes de routes `/users`, `/restaurants`, `/menus`
-- [ ] Middleware d’auth (JWT) présent ou à créer
-- [ ] Fichiers env/README de démarrage
-
----
-
-## Backlog (options)
-
-- [ ] Rate limiting (express-rate-limit)
-- [ ] ETag/Cache-Control pour GET publics
-- [ ] Soft-delete ou audit trail
-- [ ] i18n des messages d’erreur
-- [ ] WebSocket (notifications live) si besoin futur
+- [x] Présence de l’app Express + route de test
+- [x] Connexion Mongo (Mongoose) opérationnelle
+- [x] Squelettes de routes `/users`, `/restaurants`, `/menus`
+- [x] Middleware d’auth (JWT) présent ou à créer
+- [x] Fichiers env/README de démarrage
