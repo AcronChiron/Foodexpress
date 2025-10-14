@@ -203,6 +203,11 @@ jest.mock('../src/models/User');
 jest.mock('../src/models/Restaurant');
 jest.mock('../src/models/Menu');
 
+// get fresh references to the mocked modules so we can configure them below
+const MockedUser = require('../src/models/User');
+const MockedRestaurant = require('../src/models/Restaurant');
+const MockedMenu = require('../src/models/Menu');
+
 const { login } = require('../src/controllers/authController');
 const { listRestaurants } = require('../src/controllers/restaurantController');
 const { listMenus } = require('../src/controllers/menuController');
@@ -219,7 +224,7 @@ describe('extra coverage: controllers error branches & auth header format', () =
       comparePassword: jest.fn().mockResolvedValue(true),
       toJSON: () => ({ id: 'u1' }),
     };
-    User.findOne = jest.fn().mockReturnValue({ select: () => Promise.resolve(user) });
+    MockedUser.findOne = jest.fn().mockReturnValue({ select: () => Promise.resolve(user) });
     const req = { body: { email: 'a@b', password: 'p' } };
     const res = { json: jest.fn() };
     const next = jest.fn();
@@ -351,8 +356,14 @@ describe('errorHandler branches', () => {
   test('falls back to 500', () => {
     const err = new Error('boom');
     const res = makeRes();
-    errorHandler(err, {}, res, () => {});
-    expect(res.status).toHaveBeenCalledWith(500);
+    // suppress console.error output during this test to keep test output clean
+    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      errorHandler(err, {}, res, () => {});
+      expect(res.status).toHaveBeenCalledWith(500);
+    } finally {
+      spy.mockRestore();
+    }
   });
 });
 
@@ -440,21 +451,24 @@ describe('pagination aliases', () => {
 
 describe('model validations', () => {
   test('Restaurant phone validator rejects bad number', async () => {
-    const r = new Restaurant({ name: 'T', phone: 'abc' });
+    const R = jest.requireActual('../src/models/Restaurant');
+    const r = new R({ name: 'T', phone: 'abc' });
     const err = r.validateSync();
     expect(err).toBeDefined();
     expect(err.errors).toHaveProperty('phone');
   });
 
   test('Menu price min validation', async () => {
-    const m = new Menu({ restaurant_id: '000000000000000000000000', name: 'Dish', price: -5 });
+    const M = jest.requireActual('../src/models/Menu');
+    const m = new M({ restaurant_id: '000000000000000000000000', name: 'Dish', price: -5 });
     const err = m.validateSync();
     expect(err).toBeDefined();
     expect(err.errors).toHaveProperty('price');
   });
 
   test('Restaurant phone empty is allowed', () => {
-    const r = new Restaurant({ name: 'T' });
+    const R2 = jest.requireActual('../src/models/Restaurant');
+    const r = new R2({ name: 'T' });
     const err = r.validateSync();
     expect(err).toBeUndefined();
   });
