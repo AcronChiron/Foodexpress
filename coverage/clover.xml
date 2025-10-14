@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760445999016" clover="3.2.0">
-  <project timestamp="1760445999016" name="All files">
-    <metrics statements="411" coveredstatements="395" conditionals="145" coveredconditionals="127" methods="44" coveredmethods="41" elements="600" coveredelements="563" complexity="0" loc="411" ncloc="411" packages="7" files="19" classes="19"/>
+<coverage generated="1760447602906" clover="3.2.0">
+  <project timestamp="1760447602906" name="All files">
+    <metrics statements="411" coveredstatements="396" conditionals="145" coveredconditionals="127" methods="44" coveredmethods="41" elements="600" coveredelements="564" complexity="0" loc="411" ncloc="411" packages="7" files="19" classes="19"/>
     <package name="src">
-      <metrics statements="30" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="30" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="app.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\app.js">
-        <metrics statements="30" coveredstatements="28" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <metrics statements="30" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -19,7 +19,7 @@
         <line num="16" count="1" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
         <line num="22" count="0" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
@@ -396,8 +396,8 @@
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
       </file>
       <file name="menus.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\routes\menus.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -407,12 +407,12 @@
         <line num="4" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="87" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="98" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
       </file>
       <file name="restaurants.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\routes\restaurants.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -422,12 +422,12 @@
         <line num="4" count="1" type="stmt"/>
         <line num="13" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="88" count="1" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
       </file>
       <file name="users.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\routes\users.js">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -438,11 +438,11 @@
         <line num="12" count="1" type="stmt"/>
         <line num="15" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="168" count="1" type="stmt"/>
+        <line num="169" count="1" type="stmt"/>
+        <line num="176" count="1" type="stmt"/>
+        <line num="178" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.utils">
