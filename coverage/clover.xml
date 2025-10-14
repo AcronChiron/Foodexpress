@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1760449092179" clover="3.2.0">
-  <project timestamp="1760449092179" name="All files">
-    <metrics statements="417" coveredstatements="403" conditionals="145" coveredconditionals="127" methods="45" coveredmethods="41" elements="607" coveredelements="571" complexity="0" loc="417" ncloc="417" packages="7" files="20" classes="20"/>
+<coverage generated="1760449878236" clover="3.2.0">
+  <project timestamp="1760449878236" name="All files">
+    <metrics statements="412" coveredstatements="396" conditionals="145" coveredconditionals="127" methods="45" coveredmethods="41" elements="602" coveredelements="564" complexity="0" loc="412" ncloc="412" packages="7" files="19" classes="19"/>
     <package name="src">
-      <metrics statements="36" coveredstatements="36" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <metrics statements="31" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
       <file name="app.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\app.js">
-        <metrics statements="31" coveredstatements="31" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <metrics statements="31" coveredstatements="29" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -20,8 +20,8 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="21" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="31" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
         <line num="36" count="1" type="stmt"/>
@@ -37,14 +37,6 @@
         <line num="53" count="1" type="stmt"/>
         <line num="54" count="1" type="stmt"/>
         <line num="56" count="1" type="stmt"/>
-      </file>
-      <file name="swagger.js" path="C:\Users\caliq\OneDrive - SUPINFO\PGE3\3APIS\foodexpress\src\swagger.js">
-        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="120" count="1" type="stmt"/>
-        <line num="122" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.config">
