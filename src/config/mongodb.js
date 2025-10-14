@@ -41,9 +41,8 @@ async function connect(uri = process.env.MONGO_URI, options = {}) {
     try {
       attempt += 1;
       // connect returns a promise
+      // recommended options for modern mongoose; avoid deprecated driver options
       await mongoose.connect(uri, {
-        // recommended options for modern mongoose
-        keepAlive: true,
         connectTimeoutMS: 10000,
         serverSelectionTimeoutMS: 5000,
         // other options can be passed via `options.mongooseOptions`
