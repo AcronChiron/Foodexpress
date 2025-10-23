@@ -7,13 +7,13 @@
     {
       "_id": "wrk_foodexpress_api_workspace",
       "_type": "workspace",
-      "name": "🍕 FoodExpress API - Complete Collection",
-      "description": "Complete Insomnia collection for FoodExpress API testing with working examples, environments, and automated workflows"
+      "name": "🍕 FoodExpress API - Collection Complète",
+      "description": "Collection Insomnia complète pour tester l'API FoodExpress avec exemples de travail, environnements et flux automatisés"
     },
     {
       "_id": "env_development",
       "_type": "environment",
-      "name": "Development",
+      "name": "Développement",
       "data": {
         "base_url": "http://localhost:3000",
         "jwt_token": "",
@@ -46,15 +46,15 @@
     {
       "_id": "grp_health_checks",
       "_type": "request_group",
-      "name": "🏥 Health Checks",
-      "description": "API health monitoring endpoints",
+      "name": "🏥 Vérifications de Santé",
+      "description": "Points de terminaison de surveillance de l'API",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_health_liveness",
       "_type": "request",
-      "name": "✅ Liveness Check",
-      "description": "Check if the application is running",
+      "name": "✅ Vérification de Vivacité",
+      "description": "Vérifier si l'application fonctionne",
       "method": "GET",
       "url": "{{ base_url }}/health",
       "parentId": "grp_health_checks"
@@ -62,8 +62,8 @@
     {
       "_id": "req_health_readiness",
       "_type": "request",
-      "name": "🔄 Readiness Check",
-      "description": "Check if the application is ready (database connected)",
+      "name": "🔄 Vérification de Prêt",
+      "description": "Vérifier si l'application est prête (base de données connectée)",
       "method": "GET",
       "url": "{{ base_url }}/health/ready",
       "parentId": "grp_health_checks"
@@ -71,74 +71,106 @@
     {
       "_id": "grp_authentication",
       "_type": "request_group",
-      "name": "🔐 Authentication",
-      "description": "User registration and login endpoints",
+      "name": "🔐 Authentification",
+      "description": "Points de terminaison d'inscription et de connexion de l'utilisateur",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_register_user",
       "_type": "request",
-      "name": "📝 Register New User",
-      "description": "Create a new user account",
+      "name": "📝 Inscrire Nouvel Utilisateur",
+      "description": "Créer un nouveau compte utilisateur",
       "method": "POST",
       "url": "{{ base_url }}/users",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"email\": \"{{ new_user_email }}\",\n  \"username\": \"{{ new_user_username }}\",\n  \"password\": \"{{ new_user_password }}\"\n}"
       },
-      "parentId": "grp_authentication"
+      "parentId": "grp_authentication",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_user_id",
+          "name": "Définir ID Utilisateur",
+          "value": "if (response.to.have.status(201)) {\n  insomnia.environment.set('user_id', response.json().data._id);\n}"
+        }
+      ]
     },
     {
       "_id": "req_login_admin",
       "_type": "request",
-      "name": "🔑 Admin Login",
-      "description": "Login as admin user (stores JWT token)",
+      "name": "🔑 Connexion Admin",
+      "description": "Se connecter en tant qu'utilisateur admin (stocke le token JWT)",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"email\": \"{{ admin_email }}\",\n  \"password\": \"{{ admin_password }}\"\n}"
       },
-      "parentId": "grp_authentication"
+      "parentId": "grp_authentication",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_jwt_admin",
+          "name": "Définir Token JWT",
+          "value": "if (response.to.have.status(200)) {\n  insomnia.environment.set('jwt_token', response.json().data.token);\n}"
+        }
+      ]
     },
     {
       "_id": "req_login_user",
       "_type": "request",
-      "name": "👤 User Login",
-      "description": "Login as regular user (stores JWT token)",
+      "name": "👤 Connexion Utilisateur",
+      "description": "Se connecter en tant qu'utilisateur normal (stocke le token JWT)",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"email\": \"{{ test_user_email }}\",\n  \"password\": \"{{ test_user_password }}\"\n}"
       },
-      "parentId": "grp_authentication"
+      "parentId": "grp_authentication",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_jwt_user",
+          "name": "Définir Token JWT",
+          "value": "if (response.to.have.status(200)) {\n  insomnia.environment.set('jwt_token', response.json().data.token);\n}"
+        }
+      ]
     },
     {
       "_id": "req_login_new_user",
       "_type": "request",
-      "name": "🆕 Login New User",
-      "description": "Login with newly created user account",
+      "name": "🆕 Connexion Nouvel Utilisateur",
+      "description": "Se connecter avec le compte utilisateur nouvellement créé",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {
         "mimeType": "application/json",
         "text": "{\n  \"email\": \"{{ new_user_email }}\",\n  \"password\": \"{{ new_user_password }}\"\n}"
       },
-      "parentId": "grp_authentication"
+      "parentId": "grp_authentication",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_jwt_new_user",
+          "name": "Définir Token JWT",
+          "value": "if (response.to.have.status(200)) {\n  insomnia.environment.set('jwt_token', response.json().data.token);\n}"
+        }
+      ]
     },
     {
       "_id": "grp_users",
       "_type": "request_group",
-      "name": "👥 User Management",
-      "description": "User profile management endpoints",
+      "name": "👥 Gestion des Utilisateurs",
+      "description": "Points de terminaison de gestion du profil utilisateur",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_get_user_profile",
       "_type": "request",
-      "name": "👤 Get User Profile",
-      "description": "Get current user profile information",
+      "name": "👤 Obtenir Profil Utilisateur",
+      "description": "Obtenir les informations du profil utilisateur actuel",
       "method": "GET",
       "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
@@ -152,8 +184,8 @@
     {
       "_id": "req_update_user_profile",
       "_type": "request",
-      "name": "✏️ Update User Profile",
-      "description": "Update current user profile",
+      "name": "✏️ Mettre à Jour Profil Utilisateur",
+      "description": "Mettre à jour le profil utilisateur actuel",
       "method": "PUT",
       "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
@@ -164,15 +196,15 @@
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"username\": \"updated_username\",\n  \"email\": \"newemail@example.com\"\n}"
+        "text": "{\n  \"username\": \"nom_utilisateur_mis_a_jour\",\n  \"email\": \"nouvelemail@example.com\"\n}"
       },
       "parentId": "grp_users"
     },
     {
       "_id": "req_delete_user",
       "_type": "request",
-      "name": "🗑️ Delete User Account",
-      "description": "Delete current user account",
+      "name": "🗑️ Supprimer Compte Utilisateur",
+      "description": "Supprimer le compte utilisateur actuel",
       "method": "DELETE",
       "url": "{{ base_url }}/users/{{ user_id }}",
       "headers": [
@@ -186,15 +218,15 @@
     {
       "_id": "grp_restaurants",
       "_type": "request_group",
-      "name": "🏪 Restaurant Management",
-      "description": "Restaurant CRUD operations (Admin only for CUD)",
+      "name": "🏪 Gestion des Restaurants",
+      "description": "Opérations CRUD des restaurants (Admin uniquement pour CUD)",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_list_restaurants",
       "_type": "request",
-      "name": "📋 List Restaurants",
-      "description": "Get paginated list of restaurants (public)",
+      "name": "📋 Lister les Restaurants",
+      "description": "Obtenir la liste paginée des restaurants (public)",
       "method": "GET",
       "url": "{{ base_url }}/restaurants?page=1&limit=10&sort=name",
       "parentId": "grp_restaurants"
@@ -202,8 +234,8 @@
     {
       "_id": "req_get_restaurant_details",
       "_type": "request",
-      "name": "🏪 Get Restaurant Details",
-      "description": "Get specific restaurant information",
+      "name": "🏪 Obtenir Détails Restaurant",
+      "description": "Obtenir les informations d'un restaurant spécifique",
       "method": "GET",
       "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
       "parentId": "grp_restaurants"
@@ -211,8 +243,8 @@
     {
       "_id": "req_create_restaurant",
       "_type": "request",
-      "name": "➕ Create Restaurant (Admin)",
-      "description": "Create a new restaurant (Admin only)",
+      "name": "➕ Créer Restaurant (Admin)",
+      "description": "Créer un nouveau restaurant (Admin uniquement)",
       "method": "POST",
       "url": "{{ base_url }}/restaurants",
       "headers": [
@@ -225,13 +257,21 @@
         "mimeType": "application/json",
         "text": "{\n  \"name\": \"Le Gourmet Parisien\",\n  \"address\": \"15 Rue de la Paix, 75002 Paris\",\n  \"phone\": \"+33142601234\",\n  \"opening_hours\": \"Lundi-Dimanche: 12h00-23h00\"\n}"
       },
-      "parentId": "grp_restaurants"
+      "parentId": "grp_restaurants",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_restaurant_id",
+          "name": "Définir ID Restaurant",
+          "value": "if (response.to.have.status(201)) {\n  insomnia.environment.set('restaurant_id', response.json().data._id);\n}"
+        }
+      ]
     },
     {
       "_id": "req_update_restaurant",
       "_type": "request",
-      "name": "✏️ Update Restaurant (Admin)",
-      "description": "Update restaurant information (Admin only)",
+      "name": "✏️ Mettre à Jour Restaurant (Admin)",
+      "description": "Mettre à jour les informations du restaurant (Admin uniquement)",
       "method": "PUT",
       "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
       "headers": [
@@ -242,15 +282,15 @@
       ],
       "body": {
         "mimeType": "application/json",
-        "text": "{\n  \"name\": \"Le Gourmet Parisien - Updated\",\n  \"opening_hours\": \"Lundi-Samedi: 12h00-23h00, Dimanche: Fermé\"\n}"
+        "text": "{\n  \"name\": \"Le Gourmet Parisien - Mis à Jour\",\n  \"opening_hours\": \"Lundi-Samedi: 12h00-23h00, Dimanche: Fermé\"\n}"
       },
       "parentId": "grp_restaurants"
     },
     {
       "_id": "req_delete_restaurant",
       "_type": "request",
-      "name": "🗑️ Delete Restaurant (Admin)",
-      "description": "Delete a restaurant (Admin only)",
+      "name": "🗑️ Supprimer Restaurant (Admin)",
+      "description": "Supprimer un restaurant (Admin uniquement)",
       "method": "DELETE",
       "url": "{{ base_url }}/restaurants/{{ restaurant_id }}",
       "headers": [
@@ -264,15 +304,15 @@
     {
       "_id": "grp_menus",
       "_type": "request_group",
-      "name": "🍽️ Menu Management",
-      "description": "Menu CRUD operations (Admin only for CUD)",
+      "name": "🍽️ Gestion des Menus",
+      "description": "Opérations CRUD des menus (Admin uniquement pour CUD)",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_list_menus",
       "_type": "request",
-      "name": "📋 List Menus",
-      "description": "Get paginated list of menus (public)",
+      "name": "📋 Lister les Menus",
+      "description": "Obtenir la liste paginée des menus (public)",
       "method": "GET",
       "url": "{{ base_url }}/menus?page=1&limit=10&sort=price",
       "parentId": "grp_menus"
@@ -280,8 +320,8 @@
     {
       "_id": "req_list_menus_by_restaurant",
       "_type": "request",
-      "name": "🏪 List Menus by Restaurant",
-      "description": "Get menus for a specific restaurant",
+      "name": "🏪 Lister les Menus par Restaurant",
+      "description": "Obtenir les menus pour un restaurant spécifique",
       "method": "GET",
       "url": "{{ base_url }}/menus?restaurant_id={{ restaurant_id }}",
       "parentId": "grp_menus"
@@ -289,8 +329,8 @@
     {
       "_id": "req_get_menu_details",
       "_type": "request",
-      "name": "🍽️ Get Menu Details",
-      "description": "Get specific menu information",
+      "name": "🍽️ Obtenir Détails Menu",
+      "description": "Obtenir les informations d'un menu spécifique",
       "method": "GET",
       "url": "{{ base_url }}/menus/{{ menu_id }}",
       "parentId": "grp_menus"
@@ -298,8 +338,8 @@
     {
       "_id": "req_create_menu",
       "_type": "request",
-      "name": "➕ Create Menu Item (Admin)",
-      "description": "Create a new menu item (Admin only)",
+      "name": "➕ Créer Article de Menu (Admin)",
+      "description": "Créer un nouvel article de menu (Admin uniquement)",
       "method": "POST",
       "url": "{{ base_url }}/menus",
       "headers": [
@@ -312,13 +352,21 @@
         "mimeType": "application/json",
         "text": "{\n  \"restaurant_id\": \"{{ restaurant_id }}\",\n  \"name\": \"Boeuf Bourguignon\",\n  \"description\": \"Tendre bœuf mijoté au vin rouge avec légumes de saison\",\n  \"price\": 28.50,\n  \"category\": \"Plat principal\"\n}"
       },
-      "parentId": "grp_menus"
+      "parentId": "grp_menus",
+      "tests": [
+        {
+          "_type": "test",
+          "_id": "test_set_menu_id",
+          "name": "Définir ID Menu",
+          "value": "if (response.to.have.status(201)) {\n  insomnia.environment.set('menu_id', response.json().data._id);\n}"
+        }
+      ]
     },
     {
       "_id": "req_update_menu",
       "_type": "request",
-      "name": "✏️ Update Menu Item (Admin)",
-      "description": "Update menu item information (Admin only)",
+      "name": "✏️ Mettre à Jour Article de Menu (Admin)",
+      "description": "Mettre à jour les informations de l'article de menu (Admin uniquement)",
       "method": "PUT",
       "url": "{{ base_url }}/menus/{{ menu_id }}",
       "headers": [
@@ -336,8 +384,8 @@
     {
       "_id": "req_delete_menu",
       "_type": "request",
-      "name": "🗑️ Delete Menu Item (Admin)",
-      "description": "Delete a menu item (Admin only)",
+      "name": "🗑️ Supprimer Article de Menu (Admin)",
+      "description": "Supprimer un article de menu (Admin uniquement)",
       "method": "DELETE",
       "url": "{{ base_url }}/menus/{{ menu_id }}",
       "headers": [
@@ -351,15 +399,15 @@
     {
       "_id": "grp_workflows",
       "_type": "request_group",
-      "name": "🔄 Complete Workflows",
-      "description": "End-to-end testing scenarios",
+      "name": "🔄 Flux Complets",
+      "description": "Scénarios de test de bout en bout",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_workflow_admin_full",
       "_type": "request",
-      "name": "👑 Admin: Complete Restaurant + Menu Creation",
-      "description": "Complete workflow: Login as admin → Create restaurant → Create menu → List everything",
+      "name": "👑 Admin: Création Restaurant + Menu Complet",
+      "description": "Flux complet: Se connecter en tant qu'admin → Créer restaurant → Créer menu → Lister tout",
       "method": "GET",
       "url": "{{ base_url }}/health",
       "parentId": "grp_workflows"
@@ -367,8 +415,8 @@
     {
       "_id": "req_workflow_user_browse",
       "_type": "request",
-      "name": "👤 User: Browse Restaurants & Menus",
-      "description": "User workflow: Browse restaurants and menus without authentication",
+      "name": "👤 Utilisateur: Parcourir Restaurants & Menus",
+      "description": "Flux utilisateur: Parcourir les restaurants et menus sans authentification",
       "method": "GET",
       "url": "{{ base_url }}/restaurants",
       "parentId": "grp_workflows"
@@ -376,15 +424,15 @@
     {
       "_id": "grp_documentation",
       "_type": "request_group",
-      "name": "📚 API Documentation",
-      "description": "API documentation and specifications",
+      "name": "📚 Documentation API",
+      "description": "Documentation et spécifications de l'API",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_api_docs_ui",
       "_type": "request",
-      "name": "📖 Swagger UI Documentation",
-      "description": "Interactive API documentation with Swagger UI",
+      "name": "📖 Documentation UI Swagger",
+      "description": "Documentation interactive de l'API avec Swagger UI",
       "method": "GET",
       "url": "{{ base_url }}/api-docs",
       "parentId": "grp_documentation"
@@ -392,8 +440,8 @@
     {
       "_id": "req_api_docs_json",
       "_type": "request",
-      "name": "📋 OpenAPI JSON Specification",
-      "description": "Raw OpenAPI/Swagger JSON specification",
+      "name": "📋 Spécification JSON OpenAPI",
+      "description": "Spécification OpenAPI/Swagger JSON brute",
       "method": "GET",
       "url": "{{ base_url }}/api-docs.json",
       "parentId": "grp_documentation"
@@ -401,15 +449,15 @@
     {
       "_id": "grp_error_testing",
       "_type": "request_group",
-      "name": "🚨 Error Testing",
-      "description": "Test error scenarios and edge cases",
+      "name": "🚨 Test d'Erreurs",
+      "description": "Tester les scénarios d'erreur et les cas limites",
       "parentId": "wrk_foodexpress_api_workspace"
     },
     {
       "_id": "req_invalid_auth",
       "_type": "request",
-      "name": "❌ Invalid Authentication",
-      "description": "Test invalid JWT token",
+      "name": "❌ Authentification Invalide",
+      "description": "Tester le token JWT invalide",
       "method": "GET",
       "url": "{{ base_url }}/users/invalid-id",
       "headers": [
@@ -423,8 +471,8 @@
     {
       "_id": "req_not_found",
       "_type": "request",
-      "name": "🔍 Resource Not Found",
-      "description": "Test 404 error for non-existent resource",
+      "name": "🔍 Ressource Non Trouvée",
+      "description": "Tester l'erreur 404 pour une ressource inexistante",
       "method": "GET",
       "url": "{{ base_url }}/restaurants/507f1f77bcf86cd799439011",
       "parentId": "grp_error_testing"
@@ -432,8 +480,8 @@
     {
       "_id": "req_invalid_data",
       "_type": "request",
-      "name": "📝 Invalid Request Data",
-      "description": "Test validation errors",
+      "name": "📝 Données de Requête Invalides",
+      "description": "Tester les erreurs de validation",
       "method": "POST",
       "url": "{{ base_url }}/users",
       "body": {
@@ -445,8 +493,8 @@
     {
       "_id": "req_missing_body",
       "_type": "request",
-      "name": "🚫 Missing Request Body",
-      "description": "Test missing req.body handling",
+      "name": "🚫 Corps de Requête Manquant",
+      "description": "Tester la gestion du req.body manquant",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {
@@ -458,8 +506,8 @@
     {
       "_id": "req_invalid_body_format",
       "_type": "request",
-      "name": "📄 Invalid Body Format",
-      "description": "Test invalid JSON body handling",
+      "name": "📄 Format de Corps Invalide",
+      "description": "Tester la gestion du corps JSON invalide",
       "method": "POST",
       "url": "{{ base_url }}/auth/login",
       "body": {

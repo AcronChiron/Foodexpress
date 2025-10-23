@@ -25,7 +25,7 @@ L'API est construite avec :
 
 ### 🌐 Accès à l'API
 
-- **URL de base** : `https://your-api-domain.com` (à remplacer par votre domaine)
+- **URL de base** : `http://localhost:3000`
 - **Version** : v1.0.0
 - **Format des données** : JSON
 - **Encodage** : UTF-8
