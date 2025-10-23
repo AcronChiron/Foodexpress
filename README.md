@@ -64,7 +64,17 @@ FoodExpress est une API REST complète pour la gestion de restaurants et de menu
 
    Assurez-vous que MongoDB est en cours d'exécution sur votre machine ou configurez une connexion Atlas.
 
-5. **Lancer l'application**
+5. **Configurer la base de données (première utilisation)**
+
+   Pour initialiser la base de données avec des données d'exemple :
+
+   ```bash
+   npm run seed
+   ```
+
+   > ⚠️ **Note** : Utilisez `npm run wipe` pour vider les collections en développement/test.
+
+6. **Lancer l'application**
 
    ```bash
    # Mode développement (avec nodemon)
@@ -74,7 +84,7 @@ FoodExpress est une API REST complète pour la gestion de restaurants et de menu
    npm run start
    ```
 
-6. **Vérifier le fonctionnement**
+7. **Vérifier le fonctionnement**
 
    Ouvrez votre navigateur et allez sur :
    - **API** : `http://localhost:3000`
@@ -332,18 +342,28 @@ La documentation complète de l'API est disponible via Swagger UI :
 - 📊 **Schémas de données** complets
 - ⚠️ **Codes d'erreur** documentés
 
-## 🔧 Configuration avancée
+### Documentation Complémentaire
+
+Des fichiers de documentation détaillés sont disponibles dans le dossier `docs/` :
+
+- [`📖 Documentation_Utilisateur_FoodExpress.md`](docs/Documentation_Utilisateur_FoodExpress.md) - Guide complet pour les utilisateurs de l'API, avec exemples d'utilisation en JavaScript et Python
+- [`🛠️ FoodExpress_Documentation.md`](docs/FoodExpress_Documentation.md) - Documentation technique complète du projet, architecture, et guides de développement
+- [`📋 FoodExpress_TODO.md`](docs/FoodExpress_TODO.md) - Liste des tâches et fonctionnalités du projet
+
+## Configuration avancée
 
 ### Variables d'environnement
 
-| Variable         | Description              | Défaut        | Obligatoire |
-| ---------------- | ------------------------ | ------------- | ----------- |
-| `PORT`           | Port du serveur          | `3000`        | Non         |
-| `MONGO_URI`      | URI MongoDB              | -             | Oui         |
-| `JWT_SECRET`     | Clé secrète JWT          | -             | Oui         |
-| `NODE_ENV`       | Environnement            | `development` | Non         |
-| `CORS_ALLOWLIST` | Origines CORS (virgules) | Toutes        | Non         |
-| `LOG_LEVEL`      | Niveau de logs           | `info`        | Non         |
+| Variable               | Description                               | Défaut        | Obligatoire |
+| ---------------------- | ----------------------------------------- | ------------- | ----------- |
+| `PORT`                 | Port du serveur                           | `3000`        | Non         |
+| `MONGO_URI`            | URI MongoDB                               | -             | Oui         |
+| `JWT_SECRET`           | Clé secrète JWT                           | -             | Oui         |
+| `NODE_ENV`             | Environnement                             | `development` | Non         |
+| `CORS_ALLOWLIST`       | Origines CORS (virgules)                  | Toutes        | Non         |
+| `RATE_LIMIT_WINDOW_MS` | Fenêtre de limitation des taux en ms      | `900000`      | Non         |
+| `RATE_LIMIT_MAX`       | Nombre max de requêtes par fenêtre par IP | `100`         | Non         |
+| `LOG_LEVEL`            | Niveau de logs                            | `info`        | Non         |
 
 ### Rate Limiting
 
