@@ -70,3 +70,6 @@
 2025-10-25 21:42:09:429 [32minfo[39m: [32mMongoDB connected[39m
 2025-10-25 21:42:09:429 [33mwarn[39m: [33mMongoDB disconnected[39m
 2025-10-25 21:55:12:5512 [32minfo[39m: [32mMongoDB connected[39m
+2025-10-25 21:55:54:5554 [32minfo[39m: [32mMongoDB connected[39m
+2025-10-25 21:56:53:5653 [32minfo[39m: [32mMongoDB connected[39m
+2025-10-25 21:56:53:5653 [32minfo[39m: [32mServer listening on port 3000[39m
