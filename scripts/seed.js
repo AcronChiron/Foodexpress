@@ -21,7 +21,7 @@ async function seed() {
     const admin = await User.create({
       email: 'admin@example.com',
       username: 'admin',
-      password: 'password',
+      password: 'adminpass',
       role: 'admin',
     });
     console.log(`Admin created: ${admin.username}`);

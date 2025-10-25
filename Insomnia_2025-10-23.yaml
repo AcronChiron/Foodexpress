@@ -1,0 +1,721 @@
+type: collection.insomnia.rest/5.0
+name: 🍕 FoodExpress API - Collection Complète
+meta:
+  id: wrk_f54049a46eb047fe873f69c084d8bcac
+  created: 1761226564910
+  modified: 1761226564910
+  description: ""
+collection:
+  - name: 🏥 Health
+    meta:
+      id: fld_36a22652809246b59268e10ceb765f7d
+      created: 1761226564913
+      modified: 1761226564913
+      sortKey: -1761226564913
+      description: Points de terminaison de surveillance de l'API
+    children:
+      - url: "{{base_url}}/health"
+        name: ✅ Vérification de Vivacité
+        meta:
+          id: req_aeeef92f7e504cd1b7eab2e4b1c53c72
+          created: 1761226564914
+          modified: 1761226564914
+          isPrivate: false
+          description: Vérifier si l'application fonctionne
+          sortKey: -1761226564914
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/health/ready"
+        name: 🔄 Vérification de Prêt
+        meta:
+          id: req_5eaef3c248404c1489bbeb8246396ebb
+          created: 1761226564915
+          modified: 1761226564915
+          isPrivate: false
+          description: Vérifier si l'application est prête (base de données connectée)
+          sortKey: -1761226564915
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🔐 Auth
+    meta:
+      id: fld_765d8d57eb6547ef9813f9c09c8aae77
+      created: 1761226564916
+      modified: 1761226564916
+      sortKey: -1761226564916
+      description: Points de terminaison d'inscription et de connexion de l'utilisateur
+    children:
+      - url: "{{base_url}}/users"
+        name: 📝 Inscrire Nouvel Utilisateur
+        meta:
+          id: req_4c2c1ae783d74d09aeba9b0cc78e1677
+          created: 1761226564920
+          modified: 1761226848438
+          isPrivate: false
+          description: Créer un nouveau compte utilisateur
+          sortKey: -1761226564920
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "john.doe@example.com",
+              "username": "johndoe",
+              "password": "securepass123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: 🔑 Connexion Admin
+        meta:
+          id: req_b4bd21fae5b4467a9e845341e6cff4b6
+          created: 1761226564921
+          modified: 1761226879754
+          isPrivate: false
+          description: Se connecter en tant qu'utilisateur admin
+          sortKey: -1761226564921
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "admin@example.com",
+              "password": "password"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: 👤 Connexion Utilisateur
+        meta:
+          id: req_169810136e0d45c896d0c25c6440c614
+          created: 1761226564922
+          modified: 1761226955083
+          isPrivate: false
+          description: Se connecter en tant qu'utilisateur normal
+          sortKey: -1761226564922
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "alice@example.com",
+              "password": "password"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: 🆕 Connexion Nouvel Utilisateur
+        meta:
+          id: req_9465ad566a7f4ac4aae60315caedaf5e
+          created: 1761226564923
+          modified: 1761226832220
+          isPrivate: false
+          description: Se connecter avec le compte utilisateur nouvellement créé
+          sortKey: -1761226564923
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "john.doe@example.com",
+              "password": "securepass123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 👥 Users
+    meta:
+      id: fld_ce7e4741633948d3b4df1f5a5656658b
+      created: 1761226564925
+      modified: 1761226564925
+      sortKey: -1761226564925
+      description: Points de terminaison de gestion du profil utilisateur
+    children:
+      - url: "{{base_url}}/users/68ee53d90555f9f7ee3d5363"
+        name: 👤 Obtenir Profil Utilisateur
+        meta:
+          id: req_ec7da1286a3d4898bb333a7af31c6439
+          created: 1761226564925
+          modified: 1761227401147
+          isPrivate: false
+          description: Obtenir les informations du profil utilisateur actuel
+          sortKey: -1761226564925
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.admin_token }}
+            id: pair_61065b19a8824bac8c0609b97ad07b5d
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/users/68ee53d90555f9f7ee3d5363"
+        name: ✏️ Mettre à Jour Profil Utilisateur
+        meta:
+          id: req_500bcc7e0dec4573aaf3fcb2b55b19fb
+          created: 1761226564927
+          modified: 1761227410805
+          isPrivate: false
+          description: Mettre à jour le profil utilisateur actuel
+          sortKey: -1761226564927
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "nom_utilisateur_mis_a_jour",
+              "email": "nouvelemail@example.com"
+            }
+        headers:
+          - name: Authorization
+            value: Bearer {{user_token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/users/68fa306240d857560947730a"
+        name: 🗑️ Supprimer Compte Utilisateur
+        meta:
+          id: req_cd6e39a2af844318bb8c9cbf6ccc84d1
+          created: 1761226564928
+          modified: 1761227446767
+          isPrivate: false
+          description: Supprimer le compte utilisateur actuel
+          sortKey: -1761226564928
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{ _.new_user_token }}
+            id: pair_425230bfc4b44ca38f7df03f7d4057e7
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🏪 Restaurants
+    meta:
+      id: fld_280bb0b128ec40ffaff0821a23bbc271
+      created: 1761226564929
+      modified: 1761226564929
+      sortKey: -1761226564929
+      description: Opérations CRUD des restaurants (Admin uniquement pour CUD)
+    children:
+      - url: "{{base_url}}/restaurants?page=1&limit=10&sort=name"
+        name: 📋 Lister les Restaurants
+        meta:
+          id: req_59d07820aa4a45d1955c058e8d4a9a77
+          created: 1761226564930
+          modified: 1761226564930
+          isPrivate: false
+          description: Obtenir la liste paginée des restaurants (public)
+          sortKey: -1761226564930
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/restaurants/68ee53d90555f9f7ee3d5369"
+        name: 🏪 Obtenir Détails Restaurant
+        meta:
+          id: req_5488408c624840618f0f135bb4f22cca
+          created: 1761226564931
+          modified: 1761227290087
+          isPrivate: false
+          description: Obtenir les informations d'un restaurant spécifique
+          sortKey: -1761226564931
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/restaurants"
+        name: ➕ Créer Restaurant (Admin)
+        meta:
+          id: req_f77474027b5c4d2a9fa6b977b93589bb
+          created: 1761226564932
+          modified: 1761227312952
+          isPrivate: false
+          description: Créer un nouveau restaurant (Admin uniquement)
+          sortKey: -1761226564932
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Le Gourmet Parisien",
+              "address": "15 Rue de la Paix, 75002 Paris",
+              "phone": "+33142601234",
+              "opening_hours": "Lundi-Dimanche: 12h00-23h00"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{admin_token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/restaurants/68fa323240d857560947733e"
+        name: ✏️ Mettre à Jour Restaurant (Admin)
+        meta:
+          id: req_ca7c9f6b1bc94bb2b0e0feebc72fc4d7
+          created: 1761226564933
+          modified: 1761227350074
+          isPrivate: false
+          description: Mettre à jour les informations du restaurant (Admin uniquement)
+          sortKey: -1761226564933
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Le Gourmet Parisien - Mis à Jour",
+              "opening_hours": "Lundi-Samedi: 12h00-23h00, Dimanche: Fermé"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_81c35ff3094c4f4fb09ffaf516ff4c32
+          - name: Authorization
+            value: Bearer {{ _.admin_token }}
+            id: pair_79ce55cc6981461f899d9399e1fa41d3
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/restaurants/68fa323240d857560947733e"
+        name: 🗑️ Supprimer Restaurant (Admin)
+        meta:
+          id: req_6b4be7bbbbce48a4bbd374beda3aa325
+          created: 1761226564934
+          modified: 1761227360606
+          isPrivate: false
+          description: Supprimer un restaurant (Admin uniquement)
+          sortKey: -1761226564934
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{admin_token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🍽️ Menus
+    meta:
+      id: fld_afae9e12567b4ded930984103ba25fa3
+      created: 1761226564935
+      modified: 1761226564935
+      sortKey: -1761226564935
+      description: Opérations CRUD des menus (Admin uniquement pour CUD)
+    children:
+      - url: "{{base_url}}/menus?page=1&limit=10&sort=price"
+        name: 📋 Lister les Menus
+        meta:
+          id: req_9bbe50e134ca417d8db83ba3754739a5
+          created: 1761226564936
+          modified: 1761226564936
+          isPrivate: false
+          description: Obtenir la liste paginée des menus (public)
+          sortKey: -1761226564936
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/menus?restaurant_id={{restaurant_id}}"
+        name: 🏪 Lister les Menus par Restaurant
+        meta:
+          id: req_8eb031ae647c4ddaa5808d9f01f34d1c
+          created: 1761226564937
+          modified: 1761226564937
+          isPrivate: false
+          description: Obtenir les menus pour un restaurant spécifique
+          sortKey: -1761226564937
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/menus/68ee53d90555f9f7ee3d536f"
+        name: 🍽️ Obtenir Détails Menu
+        meta:
+          id: req_1efacb4e5392441a849d2e7299dc085c
+          created: 1761226564938
+          modified: 1761227267049
+          isPrivate: false
+          description: Obtenir les informations d'un menu spécifique
+          sortKey: -1761226564938
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/menus"
+        name: ➕ Créer Article de Menu (Admin)
+        meta:
+          id: req_f2c7b366b1984120b36b9e0214ad668b
+          created: 1761226564938
+          modified: 1761227153618
+          isPrivate: false
+          description: Créer un nouvel article de menu (Admin uniquement)
+          sortKey: -1761226564938
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "restaurant_id": "{{restaurant_id}}",
+              "name": "Boeuf Bourguignon",
+              "description": "Tendre bœuf mijoté au vin rouge avec légumes de saison",
+              "price": 28.50,
+              "category": "Plat principal"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{admin_token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/menus/{{menu_id}}"
+        name: ✏️ Mettre à Jour Article de Menu (Admin)
+        meta:
+          id: req_42c4c3ffb2794fd394b4ec7e2fc0c39b
+          created: 1761226564939
+          modified: 1761227121264
+          isPrivate: false
+          description: Mettre à jour les informations de l'article de menu (Admin
+            uniquement)
+          sortKey: -1761226564939
+        method: PUT
+        body:
+          mimeType: application/json
+          text: >-
+            {
+            	"restaurant_id":"68ee53d90555f9f7ee3d5367",
+            	"name": "test",
+              "price": 32.00,
+              "description": "Tendre bœuf mijoté au vin rouge avec légumes de saison - Spécialité de la maison"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: Authorization
+            value: Bearer {{ _.admin_token }}
+            id: pair_425f6bec49314b4180e223ca1271d3fa
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/menus/{{menu_id}}"
+        name: 🗑️ Supprimer Article de Menu (Admin)
+        meta:
+          id: req_d80842688107471795aa5c16fdf4ee9d
+          created: 1761226564940
+          modified: 1761226564940
+          isPrivate: false
+          description: Supprimer un article de menu (Admin uniquement)
+          sortKey: -1761226564940
+        method: DELETE
+        headers:
+          - name: Authorization
+            value: Bearer {{admin_token}}
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 📚 Docs
+    meta:
+      id: fld_e5fdfcb86e4146b08b9df2cc1f3e447e
+      created: 1761226564941
+      modified: 1761226564941
+      sortKey: -1761226564941
+      description: Documentation et spécifications de l'API
+    children:
+      - url: "{{base_url}}/api-docs"
+        name: 📖 Documentation UI Swagger
+        meta:
+          id: req_1331ac5001814423b5c0a48197aff10f
+          created: 1761226564942
+          modified: 1761226564942
+          isPrivate: false
+          description: Documentation interactive de l'API avec Swagger UI
+          sortKey: -1761226564942
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/api-docs.json"
+        name: 📋 Spécification JSON OpenAPI
+        meta:
+          id: req_eb63e7ec667c45f3956208516d040d66
+          created: 1761226564943
+          modified: 1761226564943
+          isPrivate: false
+          description: Spécification OpenAPI/Swagger JSON brute
+          sortKey: -1761226564943
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 🚨 Errors
+    meta:
+      id: fld_5fb360fd5b0e41e4aa5cc8dc4a466b4e
+      created: 1761226564944
+      modified: 1761226564944
+      sortKey: -1761226564944
+      description: Tester les scénarios d'erreur et les cas limites
+    children:
+      - url: "{{base_url}}/users/invalid-id"
+        name: ❌ Authentification Invalide
+        meta:
+          id: req_6f327f2c61f645eb94961b3f730ea751
+          created: 1761226564944
+          modified: 1761226564944
+          isPrivate: false
+          description: Tester le token JWT invalide
+          sortKey: -1761226564944
+        method: GET
+        headers:
+          - name: Authorization
+            value: Bearer invalid.jwt.token
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/restaurants/507f1f77bcf86cd799439011"
+        name: 🔍 Ressource Non Trouvée
+        meta:
+          id: req_958de88e11814fc3b09d613a56025a6b
+          created: 1761226564945
+          modified: 1761226564945
+          isPrivate: false
+          description: Tester l'erreur 404 pour une ressource inexistante
+          sortKey: -1761226564945
+        method: GET
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/users"
+        name: 📝 Données de Requête Invalides
+        meta:
+          id: req_541c6a12e0b3420faeeffa3e6bdb9ff8
+          created: 1761226564946
+          modified: 1761227014560
+          isPrivate: false
+          description: Tester les erreurs de validation
+          sortKey: -1761226564946
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "invalid-email",
+              "username": "",
+              "password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: 🚫 Corps de Requête Manquant
+        meta:
+          id: req_02bc2ee986064927aca859c86214478b
+          created: 1761226564947
+          modified: 1761227004882
+          isPrivate: false
+          description: Tester la gestion du req.body manquant
+          sortKey: -1761226564947
+        method: POST
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{base_url}}/auth/login"
+        name: 📄 Format de Corps Invalide
+        meta:
+          id: req_27dba8a9b30449839d2e353bd1998335
+          created: 1761226564948
+          modified: 1761226994673
+          isPrivate: false
+          description: Tester la gestion du corps JSON invalide
+          sortKey: -1761226564948
+        method: POST
+        body:
+          mimeType: application/json
+          text: not-json-content
+        headers:
+          - name: Content-Type
+            value: application/json
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_55b0eb0b82608177719f66b00606a44489146d0f
+    created: 1761226567006
+    modified: 1761226567006
+environments:
+  name: Base Environment
+  meta:
+    id: env_6693a0ec90cf49a78e05a9057668bbd9
+    created: 1761226564912
+    modified: 1761227215182
+    isPrivate: false
+  data:
+    base_url: http://localhost:3000
+    admin_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWU1M2Q5MDU1NWY5ZjdlZTNkNTM2MSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2MTIyNjg4MCwiZXhwIjoxNzYxMjMwNDgwfQ.cOp8t9Wp5sL0heSh1rYisL3B13Scvu17OVcjzQntRPU
+    user_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWU1M2Q5MDU1NWY5ZjdlZTNkNTM2MyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjI2OTU2LCJleHAiOjE3NjEyMzA1NTZ9.-n9IV0e0GXJqur6CVgZBbgz7O5OUTAmQTlT9c8_Ep2c
+    new_user_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZmEzMDYyNDBkODU3NTYwOTQ3NzMwYSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxMjI2OTI4LCJleHAiOjE3NjEyMzA1Mjh9.W9Mg7y7R2oR9yHNX4cnNpk8ZhLQmgSdMcrpWJMk9yJQ
+    restaurant_id: 507f1f77bcf86cd799439011
+    menu_id: 68ee53d90555f9f7ee3d5371
+    user_id: 507f1f77bcf86cd799439013
