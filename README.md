@@ -346,9 +346,8 @@ La documentation complète de l'API est disponible via Swagger UI :
 
 Des fichiers de documentation détaillés sont disponibles dans le dossier `docs/` :
 
-- [`📖 Documentation_Utilisateur_FoodExpress.md`](docs/Documentation_Utilisateur_FoodExpress.md) - Guide complet pour les utilisateurs de l'API, avec exemples d'utilisation en JavaScript et Python
-- [`🛠️ FoodExpress_Documentation.md`](docs/FoodExpress_Documentation.md) - Documentation technique complète du projet, architecture, et guides de développement
-- [`📋 FoodExpress_TODO.md`](docs/FoodExpress_TODO.md) - Liste des tâches et fonctionnalités du projet
+- [`📖 Documentation_Utilisateur_FoodExpress.md`](docs/Documentation_Utilisateur.md) - Guide complet pour les utilisateurs de l'API, avec exemples d'utilisation en JavaScript et Python
+- [`🛠️ FoodExpress_Documentation.md`](docs/Documentation_Technique.md) - Documentation technique complète du projet, architecture, et guides de développement
 
 ## Configuration avancée
 

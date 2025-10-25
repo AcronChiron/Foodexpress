@@ -1,25 +1,25 @@
 type: collection.insomnia.rest/5.0
-name: 🍕 FoodExpress API - Collection Complète
+name: FoodExpress API - Nicolas Valerino & Nicolas Baylac
 meta:
   id: wrk_f54049a46eb047fe873f69c084d8bcac
   created: 1761226564910
-  modified: 1761226564910
+  modified: 1761420376870
   description: ""
 collection:
-  - name: 🏥 Health
+  - name: Health
     meta:
       id: fld_36a22652809246b59268e10ceb765f7d
       created: 1761226564913
-      modified: 1761226564913
+      modified: 1761399044064
       sortKey: -1761226564913
       description: Points de terminaison de surveillance de l'API
     children:
       - url: "{{base_url}}/health"
-        name: ✅ Vérification de Vivacité
+        name: Vérification de Vivacité
         meta:
           id: req_aeeef92f7e504cd1b7eab2e4b1c53c72
           created: 1761226564914
-          modified: 1761226564914
+          modified: 1761399028477
           isPrivate: false
           description: Vérifier si l'application fonctionne
           sortKey: -1761226564914
@@ -33,11 +33,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/health/ready"
-        name: 🔄 Vérification de Prêt
+        name: Vérification de Prêt
         meta:
           id: req_5eaef3c248404c1489bbeb8246396ebb
           created: 1761226564915
-          modified: 1761226564915
+          modified: 1761399036887
           isPrivate: false
           description: Vérifier si l'application est prête (base de données connectée)
           sortKey: -1761226564915
@@ -50,20 +50,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 🔐 Auth
+  - name: Auth
     meta:
       id: fld_765d8d57eb6547ef9813f9c09c8aae77
       created: 1761226564916
-      modified: 1761226564916
+      modified: 1761399086694
       sortKey: -1761226564916
       description: Points de terminaison d'inscription et de connexion de l'utilisateur
     children:
       - url: "{{base_url}}/users"
-        name: 📝 Inscrire Nouvel Utilisateur
+        name: Inscrire Nouvel Utilisateur
         meta:
           id: req_4c2c1ae783d74d09aeba9b0cc78e1677
           created: 1761226564920
-          modified: 1761226848438
+          modified: 1761399111616
           isPrivate: false
           description: Créer un nouveau compte utilisateur
           sortKey: -1761226564920
@@ -88,11 +88,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/auth/login"
-        name: 🔑 Connexion Admin
+        name: Connexion Admin
         meta:
           id: req_b4bd21fae5b4467a9e845341e6cff4b6
           created: 1761226564921
-          modified: 1761226879754
+          modified: 1761399105735
           isPrivate: false
           description: Se connecter en tant qu'utilisateur admin
           sortKey: -1761226564921
@@ -116,11 +116,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/auth/login"
-        name: 👤 Connexion Utilisateur
+        name: Connexion Utilisateur
         meta:
           id: req_169810136e0d45c896d0c25c6440c614
           created: 1761226564922
-          modified: 1761226955083
+          modified: 1761399100617
           isPrivate: false
           description: Se connecter en tant qu'utilisateur normal
           sortKey: -1761226564922
@@ -144,11 +144,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/auth/login"
-        name: 🆕 Connexion Nouvel Utilisateur
+        name: Connexion Nouvel Utilisateur
         meta:
           id: req_9465ad566a7f4ac4aae60315caedaf5e
           created: 1761226564923
-          modified: 1761226832220
+          modified: 1761399095539
           isPrivate: false
           description: Se connecter avec le compte utilisateur nouvellement créé
           sortKey: -1761226564923
@@ -171,20 +171,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 👥 Users
+  - name: Users
     meta:
       id: fld_ce7e4741633948d3b4df1f5a5656658b
       created: 1761226564925
-      modified: 1761226564925
+      modified: 1761399132394
       sortKey: -1761226564925
       description: Points de terminaison de gestion du profil utilisateur
     children:
       - url: "{{base_url}}/users/68ee53d90555f9f7ee3d5363"
-        name: 👤 Obtenir Profil Utilisateur
+        name: Obtenir Profil Utilisateur
         meta:
           id: req_ec7da1286a3d4898bb333a7af31c6439
           created: 1761226564925
-          modified: 1761227401147
+          modified: 1761399118530
           isPrivate: false
           description: Obtenir les informations du profil utilisateur actuel
           sortKey: -1761226564925
@@ -202,11 +202,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/users/68ee53d90555f9f7ee3d5363"
-        name: ✏️ Mettre à Jour Profil Utilisateur
+        name: Mettre à Jour Profil Utilisateur
         meta:
           id: req_500bcc7e0dec4573aaf3fcb2b55b19fb
           created: 1761226564927
-          modified: 1761227410805
+          modified: 1761399123005
           isPrivate: false
           description: Mettre à jour le profil utilisateur actuel
           sortKey: -1761226564927
@@ -230,11 +230,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/users/68fa306240d857560947730a"
-        name: 🗑️ Supprimer Compte Utilisateur
+        name: Supprimer Compte Utilisateur
         meta:
           id: req_cd6e39a2af844318bb8c9cbf6ccc84d1
           created: 1761226564928
-          modified: 1761227446767
+          modified: 1761399127794
           isPrivate: false
           description: Supprimer le compte utilisateur actuel
           sortKey: -1761226564928
@@ -251,20 +251,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 🏪 Restaurants
+  - name: Restaurants
     meta:
       id: fld_280bb0b128ec40ffaff0821a23bbc271
       created: 1761226564929
-      modified: 1761226564929
+      modified: 1761399172983
       sortKey: -1761226564929
       description: Opérations CRUD des restaurants (Admin uniquement pour CUD)
     children:
       - url: "{{base_url}}/restaurants?page=1&limit=10&sort=name"
-        name: 📋 Lister les Restaurants
+        name: Lister les Restaurants
         meta:
           id: req_59d07820aa4a45d1955c058e8d4a9a77
           created: 1761226564930
-          modified: 1761226564930
+          modified: 1761399139264
           isPrivate: false
           description: Obtenir la liste paginée des restaurants (public)
           sortKey: -1761226564930
@@ -278,11 +278,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/restaurants/68ee53d90555f9f7ee3d5369"
-        name: 🏪 Obtenir Détails Restaurant
+        name: Obtenir Détails Restaurant
         meta:
           id: req_5488408c624840618f0f135bb4f22cca
           created: 1761226564931
-          modified: 1761227290087
+          modified: 1761399144899
           isPrivate: false
           description: Obtenir les informations d'un restaurant spécifique
           sortKey: -1761226564931
@@ -296,11 +296,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/restaurants"
-        name: ➕ Créer Restaurant (Admin)
+        name: Créer Restaurant (Admin)
         meta:
           id: req_f77474027b5c4d2a9fa6b977b93589bb
           created: 1761226564932
-          modified: 1761227312952
+          modified: 1761399150410
           isPrivate: false
           description: Créer un nouveau restaurant (Admin uniquement)
           sortKey: -1761226564932
@@ -328,11 +328,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/restaurants/68fa323240d857560947733e"
-        name: ✏️ Mettre à Jour Restaurant (Admin)
+        name: Mettre à Jour Restaurant (Admin)
         meta:
           id: req_ca7c9f6b1bc94bb2b0e0feebc72fc4d7
           created: 1761226564933
-          modified: 1761227350074
+          modified: 1761399156405
           isPrivate: false
           description: Mettre à jour les informations du restaurant (Admin uniquement)
           sortKey: -1761226564933
@@ -360,11 +360,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/restaurants/68fa323240d857560947733e"
-        name: 🗑️ Supprimer Restaurant (Admin)
+        name: Supprimer Restaurant (Admin)
         meta:
           id: req_6b4be7bbbbce48a4bbd374beda3aa325
           created: 1761226564934
-          modified: 1761227360606
+          modified: 1761399163287
           isPrivate: false
           description: Supprimer un restaurant (Admin uniquement)
           sortKey: -1761226564934
@@ -380,20 +380,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 🍽️ Menus
+  - name: Menus
     meta:
       id: fld_afae9e12567b4ded930984103ba25fa3
       created: 1761226564935
-      modified: 1761226564935
+      modified: 1761399209374
       sortKey: -1761226564935
       description: Opérations CRUD des menus (Admin uniquement pour CUD)
     children:
       - url: "{{base_url}}/menus?page=1&limit=10&sort=price"
-        name: 📋 Lister les Menus
+        name: Lister les Menus
         meta:
           id: req_9bbe50e134ca417d8db83ba3754739a5
           created: 1761226564936
-          modified: 1761226564936
+          modified: 1761399178026
           isPrivate: false
           description: Obtenir la liste paginée des menus (public)
           sortKey: -1761226564936
@@ -407,11 +407,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/menus?restaurant_id={{restaurant_id}}"
-        name: 🏪 Lister les Menus par Restaurant
+        name: Lister les Menus par Restaurant
         meta:
           id: req_8eb031ae647c4ddaa5808d9f01f34d1c
           created: 1761226564937
-          modified: 1761226564937
+          modified: 1761399182554
           isPrivate: false
           description: Obtenir les menus pour un restaurant spécifique
           sortKey: -1761226564937
@@ -425,11 +425,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/menus/68ee53d90555f9f7ee3d536f"
-        name: 🍽️ Obtenir Détails Menu
+        name: Obtenir Détails Menu
         meta:
           id: req_1efacb4e5392441a849d2e7299dc085c
           created: 1761226564938
-          modified: 1761227267049
+          modified: 1761399187164
           isPrivate: false
           description: Obtenir les informations d'un menu spécifique
           sortKey: -1761226564938
@@ -443,11 +443,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/menus"
-        name: ➕ Créer Article de Menu (Admin)
+        name: Créer Article de Menu (Admin)
         meta:
           id: req_f2c7b366b1984120b36b9e0214ad668b
           created: 1761226564938
-          modified: 1761227153618
+          modified: 1761399191905
           isPrivate: false
           description: Créer un nouvel article de menu (Admin uniquement)
           sortKey: -1761226564938
@@ -476,11 +476,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/menus/{{menu_id}}"
-        name: ✏️ Mettre à Jour Article de Menu (Admin)
+        name: Mettre à Jour Article de Menu (Admin)
         meta:
           id: req_42c4c3ffb2794fd394b4ec7e2fc0c39b
           created: 1761226564939
-          modified: 1761227121264
+          modified: 1761399197142
           isPrivate: false
           description: Mettre à jour les informations de l'article de menu (Admin
             uniquement)
@@ -510,11 +510,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/menus/{{menu_id}}"
-        name: 🗑️ Supprimer Article de Menu (Admin)
+        name: Supprimer Article de Menu (Admin)
         meta:
           id: req_d80842688107471795aa5c16fdf4ee9d
           created: 1761226564940
-          modified: 1761226564940
+          modified: 1761399202768
           isPrivate: false
           description: Supprimer un article de menu (Admin uniquement)
           sortKey: -1761226564940
@@ -530,20 +530,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 📚 Docs
+  - name: Docs
     meta:
       id: fld_e5fdfcb86e4146b08b9df2cc1f3e447e
       created: 1761226564941
-      modified: 1761226564941
+      modified: 1761399224683
       sortKey: -1761226564941
       description: Documentation et spécifications de l'API
     children:
       - url: "{{base_url}}/api-docs"
-        name: 📖 Documentation UI Swagger
+        name: Documentation UI Swagger
         meta:
           id: req_1331ac5001814423b5c0a48197aff10f
           created: 1761226564942
-          modified: 1761226564942
+          modified: 1761399214933
           isPrivate: false
           description: Documentation interactive de l'API avec Swagger UI
           sortKey: -1761226564942
@@ -557,11 +557,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/api-docs.json"
-        name: 📋 Spécification JSON OpenAPI
+        name: Spécification JSON OpenAPI
         meta:
           id: req_eb63e7ec667c45f3956208516d040d66
           created: 1761226564943
-          modified: 1761226564943
+          modified: 1761399220063
           isPrivate: false
           description: Spécification OpenAPI/Swagger JSON brute
           sortKey: -1761226564943
@@ -574,20 +574,20 @@ collection:
             send: true
             store: true
           rebuildPath: true
-  - name: 🚨 Errors
+  - name: Errors
     meta:
       id: fld_5fb360fd5b0e41e4aa5cc8dc4a466b4e
       created: 1761226564944
-      modified: 1761226564944
+      modified: 1761399279253
       sortKey: -1761226564944
       description: Tester les scénarios d'erreur et les cas limites
     children:
       - url: "{{base_url}}/users/invalid-id"
-        name: ❌ Authentification Invalide
+        name: Authentification Invalide
         meta:
           id: req_6f327f2c61f645eb94961b3f730ea751
           created: 1761226564944
-          modified: 1761226564944
+          modified: 1761399229402
           isPrivate: false
           description: Tester le token JWT invalide
           sortKey: -1761226564944
@@ -604,11 +604,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/restaurants/507f1f77bcf86cd799439011"
-        name: 🔍 Ressource Non Trouvée
+        name: Ressource Non Trouvée
         meta:
           id: req_958de88e11814fc3b09d613a56025a6b
           created: 1761226564945
-          modified: 1761226564945
+          modified: 1761399233922
           isPrivate: false
           description: Tester l'erreur 404 pour une ressource inexistante
           sortKey: -1761226564945
@@ -622,11 +622,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/users"
-        name: 📝 Données de Requête Invalides
+        name: Données de Requête Invalides
         meta:
           id: req_541c6a12e0b3420faeeffa3e6bdb9ff8
           created: 1761226564946
-          modified: 1761227014560
+          modified: 1761399239100
           isPrivate: false
           description: Tester les erreurs de validation
           sortKey: -1761226564946
@@ -651,11 +651,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/auth/login"
-        name: 🚫 Corps de Requête Manquant
+        name: Corps de Requête Manquant
         meta:
           id: req_02bc2ee986064927aca859c86214478b
           created: 1761226564947
-          modified: 1761227004882
+          modified: 1761399244264
           isPrivate: false
           description: Tester la gestion du req.body manquant
           sortKey: -1761226564947
@@ -675,11 +675,11 @@ collection:
             store: true
           rebuildPath: true
       - url: "{{base_url}}/auth/login"
-        name: 📄 Format de Corps Invalide
+        name: Format de Corps Invalide
         meta:
           id: req_27dba8a9b30449839d2e353bd1998335
           created: 1761226564948
-          modified: 1761226994673
+          modified: 1761399248646
           isPrivate: false
           description: Tester la gestion du corps JSON invalide
           sortKey: -1761226564948
