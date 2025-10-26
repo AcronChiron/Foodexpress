@@ -37,20 +37,20 @@ try {
  *     tags:
  *       - Health
  *     summary: Health check (liveness probe)
+ *     parameters: []
+ *     security: []
  *     responses:
  *       200:
- *         description: OK
+ *         description: successful health check
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 data:
- *                   type: object
- *                   properties:
- *                     status:
- *                       type: string
- *                       example: ok
+ *                 status:
+ *                   type: string
+ *               example:
+ *                 status: "ok"
  */
 app.get('/health', (req, res) => {
   res.json({ data: { status: 'ok' } });
@@ -64,36 +64,20 @@ app.get('/health', (req, res) => {
  *     tags:
  *       - Health
  *     summary: Readiness check (database connectivity)
+ *     parameters: []
+ *     security: []
  *     responses:
  *       200:
- *         description: Service is ready
+ *         description: successful health check
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 data:
- *                   type: object
- *                   properties:
- *                     status:
- *                       type: string
- *                       example: ready
- *                     database:
- *                       type: string
- *                       example: connected
- *       503:
- *         description: Service unavailable
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 error:
- *                   type: object
- *                   properties:
- *                     message:
- *                       type: string
- *                       example: Service Unavailable
+ *                 status:
+ *                   type: string
+ *               example:
+ *                 status: "ready"
  */
 app.get('/health/ready', (req, res) => {
   const dbState = mongoose.connection.readyState;

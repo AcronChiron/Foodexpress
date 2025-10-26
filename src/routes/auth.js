@@ -52,6 +52,8 @@ const router = express.Router();
  *         $ref: '#/components/responses/BadRequest'
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
+ *       422:
+ *         $ref: '#/components/responses/UnprocessableEntity'
  *
  *     x-code-samples:
  *       - lang: cURL

@@ -59,6 +59,8 @@ const options = {
             email: { type: 'string' },
             username: { type: 'string' },
             role: { type: 'string' },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
           },
         },
         Restaurant: {
@@ -68,6 +70,7 @@ const options = {
             name: { type: 'string' },
             address: { type: 'string' },
             phone: { type: 'string' },
+            opening_hours: { type: 'string' },
           },
         },
         Menu: {
@@ -77,6 +80,17 @@ const options = {
             restaurant_id: { type: 'string' },
             name: { type: 'string' },
             price: { type: 'number' },
+            description: { type: 'string' },
+            category: { type: 'string' },
+          },
+        },
+        PaginationMeta: {
+          type: 'object',
+          properties: {
+            currentPage: { type: 'integer' },
+            totalPages: { type: 'integer' },
+            totalItems: { type: 'integer' },
+            itemsPerPage: { type: 'integer' },
           },
         },
       },

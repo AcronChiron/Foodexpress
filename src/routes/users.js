@@ -115,6 +115,8 @@ router.post('/', validationMiddleware(userCreateSchema), register);
  *         $ref: '#/components/responses/OKUser'
  *       400:
  *         $ref: '#/components/responses/BadRequest'
+ *       409:
+ *         $ref: '#/components/responses/Conflict'
  *       422:
  *         $ref: '#/components/responses/UnprocessableEntity'
  *       401:
