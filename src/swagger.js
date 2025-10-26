@@ -93,6 +93,10 @@ const options = {
           description: 'Bad Request',
           content: { 'application/json': { schema: { $ref: '#/components/schemas/BadRequest' } } },
         },
+        Forbidden: {
+          description: 'Forbidden',
+          content: { 'application/json': { schema: { $ref: '#/components/schemas/Error' } } },
+        },
         Conflict: {
           description: 'Conflict',
           content: { 'application/json': { schema: { $ref: '#/components/schemas/Conflict' } } },
