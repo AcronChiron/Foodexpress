@@ -2,3 +2,4 @@ node_modules/
 coverage/
 logs/
 .nyc_output/
+.env
