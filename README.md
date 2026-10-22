@@ -37,7 +37,7 @@ FoodExpress est une API REST complète pour la gestion de restaurants et de menu
 1. **Cloner le repository**
 
    ```bash
-   git clone https://github.com/AcronChiron/3APIS_2025_foodexpress.git
+   git clone https://github.com/AcronChiron/Foodexpress.git
    cd foodexpress
    ```
 
